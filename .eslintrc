@@ -1,0 +1,246 @@
+{
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "parser": "babel-eslint",
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "prettier",
+    "prettier/react"
+  ],
+  "settings": {
+    "react": {
+      "version": "16.13.1"
+    }
+  },
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "plugins": [
+    "prettier"
+  ],
+  "rules": {
+    "no-console": 2,
+    // Keep array literals nice and tight:
+    //
+    //     let x = [1, 2, 3];
+    // not:
+    //     let x = [ 1, 2, 3 ];
+    "array-bracket-spacing": "error",
+    // Place parentheses around arrow function parameters only when needed (that
+    // is, when there is more than one argument). Allowing bare single arguments
+    // makes declaring higher-order functions, like those used in Redux, more
+    // compact:
+    //
+    //     const foo = x => y => z => x * y * z;
+    // not:
+    //     const foo = (x) => (y) => (z) => x * y * z;
+    "arrow-parens": [
+      "error",
+      "as-needed"
+    ],
+    // Placing commas at the end of every line in list and object literals
+    // allows lines and blocks within the subject to be rearranged without
+    // needing to add or remove commas. It also reduces noise in diffs by
+    // ensuring that the only lines which are changed are those with semantic
+    // changes, rather than purely syntatic comma juggling.
+    "comma-dangle": [
+      "error",
+      "always-multiline"
+    ],
+    // Commas never have a space before, always have a space after.
+    "comma-spacing": [
+      "error",
+      {
+        "before": false,
+        "after": true
+      }
+    ],
+    // No spaces between the name of a function being invoked and its arguments.
+    //
+    //     foo();
+    // not:
+    //     foo ();
+    "func-call-spacing": [
+      "error",
+      "never"
+    ],
+    // Require a space after the `*` (and no space before) in generators.
+    //
+    // function* gen() { /* ... */ }
+    // const x = {
+    //   * gen() { /* ... */ }
+    // };
+    "generator-star-spacing": [
+      "error",
+      "after"
+    ],
+    // Indent two spaces to get the most out of the 80-column line limit.
+    // The bodies of switch statements are indented one level further, primarily
+    // because this is the way most text editors work out of the box.
+    "indent": [
+      "error",
+      2,
+      {
+        "SwitchCase": 1,
+        "ignoredNodes": [
+          "TemplateLiteral"
+        ]
+      }
+    ],
+    // In object literals, forbid spaces before colons, require spaces after.
+    //
+    //     { foo: 1, bar: 2 }
+    // not:
+    //     { foo : 1, bar :2 },
+    "key-spacing": [
+      "error",
+      {
+        "beforeColon": false,
+        "afterColon": true
+      }
+    ],
+    // Require spaces before and after keywords, like:
+    //
+    //     if (x) {
+    //       // ...
+    //     } else {
+    //       // ...
+    //     }
+    // not:
+    //     if(x) {
+    //       // ...
+    //     }else{
+    //       // ...
+    //     }
+    "keyword-spacing": [
+      "error",
+      {
+        "before": true,
+        "after": true
+      }
+    ],
+    // Stolen/paraphrased from Python's PEP8:
+    //
+    // Limiting the required editor window width makes it possible to have
+    // several files open side-by-side, and works well when using code review
+    // tools that present the two versions in adjacent columns.
+    //
+    // The default wrapping in most tools disrupts the visual structure of the
+    // code, making it more difficult to understand. Some web based tools may
+    // not offer dynamic line wrapping at all.
+    // "max-len": ["error", 80],
+    // At most, one blank line between blocks. If a block is important enough
+    // that a single blank line doesn't sufficiently distinguish it from the
+    // su rrounding context, add a comment highlighting its importance.
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 1,
+        "maxBOF": 0,
+        "maxEOF": 0
+      }
+    ],
+    // Extra spaces at the of a line are pointless.
+    "no-trailing-spaces": "error",
+    // Unused variables add noise to code and make it more difficult to read,
+    // understand, and maintain. For arguments, which are awkward to omit,
+    // append an underscore to disable this warning:
+    //
+    //     function (foo, bar_) { /* uses foo, but not bar_ */ }
+    "no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "_$"
+      }
+    ],
+    // Whitespaces before properties are very unusual, so:
+    //
+    //     foo.bar();
+    //     foo['baz'];
+    // not:
+    //     foo .bar();
+    //     foo ['baz'];
+    "no-whitespace-before-property": [
+      "error"
+    ],
+    // While it is technically possible to omit semicolons in Javascript, thanks
+    // to ASI (automatic semicolon insertion), the list of special rules that
+    // need to be memorized to ensure a correct parse in all cases adds more
+    // cognitive overhead than they're worth. In contrast the rule "always use a
+    // semicolon" is easy to remember and follow.
+    "semi": [
+      "error",
+      "always"
+    ],
+    // No spaces before semicolons, require spaces after them when the line
+    // continues. e.g.:
+    //
+    //    for (let i = 0; i < 10; i++) { }
+    // not:
+    //    for (let i = 0 ; i < 10 ; i++) { }
+    //    for (let i = 0 ;i < 10 ;i++) { }
+    "semi-spacing": [
+      "error",
+      {
+        "before": false,
+        "after": true
+      }
+    ],
+    // Always use a space before a block:
+    //
+    //     if (x) { /* ... */ }
+    // not:
+    //     if (x){ /* ... */ }
+    "space-before-blocks": [
+      "error",
+      "always"
+    ],
+    // Anonymous functions leave a space to mark where their name would go, if
+    // they had one. This rule is abitrary, but choosing a "right" way allows us
+    // to have consistency throughout the codebase.
+    "space-before-function-paren": [
+      "error",
+      {
+        "anonymous": "always",
+        "named": "never"
+      }
+    ],
+    "strict": 0,
+    "no-extra-boolean-cast": 0,
+    "no-useless-escape": 0,
+    "no-case-declarations": 0,
+    "react/no-children-prop": 0,
+    "react/no-string-refs": 0,
+    "react/jsx-no-target-blank": 0,
+    "react/no-unescaped-entities": 0,
+    "react/jsx-key": 0,
+    "react/prop-types": 0,
+    "react/button-has-type": 0,
+    "import/no-unresolved": 0,
+    "import/no-extraneous-dependencies": 0,
+    "import/no-cycle": 0,
+    "jsx-a11y/label-has-associated-control": 0,
+    "no-shadow": 0,
+    "jsx-a11y/click-events-have-key-events": 0,
+    "jsx-a11y/no-static-element-interactions": 0,
+    "react/jsx-curly-newline": 0,
+    "no-use-before-define": 0,
+    "eqeqeq": 0,
+    "radix": 0,
+    "no-plusplus": 0,
+    "import/no-mutable-exports": 0,
+    "import/export": 0,
+    "jsx-a11y/img-redundant-alt": 0,
+    "react/jsx-fragments": 0,
+    "react/jsx-boolean-value": 0,
+    "no-script-url": 0
+  }
+}

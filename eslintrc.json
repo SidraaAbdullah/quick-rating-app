@@ -1,0 +1,153 @@
+{
+  "env": {
+    
+    "es6": true
+  },
+  "parser": "babel-eslint",
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "prettier",
+    "prettier/react"
+  ],
+  "settings": {
+    "flowtype": {
+      "onlyFilesWithFlowAnnotation": true
+    },
+    "react": {
+      "version": "16.13.1",
+      "flowVersion": "^0.54.1"
+    }
+  },
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "plugins": [
+    "prettier"
+  ],
+  "rules": {
+    "array-bracket-spacing": "error",
+    "arrow-parens": [
+      "error",
+      "as-needed"
+    ],
+    "comma-dangle": [
+      "error",
+      "always-multiline"
+    ],
+    "comma-spacing": [
+      "error",
+      {
+        "before": false,
+        "after": true
+      }
+    ],
+    "func-call-spacing": [
+      "error",
+      "never"
+    ],
+    "generator-star-spacing": [
+      "error",
+      "after"
+    ],
+    "indent": [
+      "error",
+      2,
+      {
+        "SwitchCase": 1
+      }
+    ],
+    "key-spacing": [
+      "error",
+      {
+        "beforeColon": false,
+        "afterColon": true
+      }
+    ],
+    "keyword-spacing": [
+      "error",
+      {
+        "before": true,
+        "after": true
+      }
+    ],
+    "max-len": [
+      "error",
+      80
+    ],
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 1,
+        "maxBOF": 0,
+        "maxEOF": 0
+      }
+    ],
+    "no-trailing-spaces": "error",
+    "no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "_$"
+      }
+    ],
+    "no-whitespace-before-property": [
+      "error"
+    ],
+    "semi": [
+      "error",
+      "always"
+    ],
+    "semi-spacing": [
+      "error",
+      {
+        "before": false,
+        "after": true
+      }
+    ],
+    "space-before-blocks": [
+      "error",
+      "always"
+    ],
+    "space-before-function-paren": [
+      "error",
+      {
+        "anonymous": "always",
+        "named": "never"
+      }
+    ],
+    "strict": 0,
+    "no-extra-boolean-cast": 0,
+    "no-useless-escape": 0,
+    "no-case-declarations": 0,
+    "react/no-children-prop": 0,
+    "react/no-string-refs": 0,
+    "react/jsx-no-target-blank": 0,
+    "react/no-unescaped-entities": 0,
+    "react/jsx-key": 0,
+
+    "react/prop-types": 2,
+    "react/button-has-type": 0,
+    "import/no-unresolved": 0,
+    "import/no-extraneous-dependencies": 0,
+    "import/no-cycle": 0,
+    "jsx-a11y/label-has-associated-control": 0,
+    "no-shadow": 0,
+    "jsx-a11y/click-events-have-key-events": 0,
+    "jsx-a11y/no-static-element-interactions": 0,
+    "react/jsx-curly-newline": 0,
+    "no-use-before-define": 0,
+    "eqeqeq": 0,
+    "radix": 0,
+    "no-plusplus": 0,
+    "import/no-mutable-exports": 0,
+    "import/export": 0,
+    "jsx-a11y/img-redundant-alt": 0,
+    "react/jsx-fragments": 0,
+    "react/jsx-boolean-value": 0,
+    "no-script-url": 0
+  }
+}

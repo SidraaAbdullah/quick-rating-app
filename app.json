@@ -1,0 +1,72 @@
+{
+  "expo": {
+    "name": "Pourboir",
+    "slug": "pourboir",
+    "facebookAppId": "771555200360518",
+    "facebookScheme": "fb771555200360518",
+    "facebookDisplayName": "Pourboir'",
+    "version": "1.0.9",
+    "orientation": "portrait",
+    "icon": "./assets/Serveur-IOS.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "cover"
+    },
+    "notification": {
+      "icon": "./assets/Serveur.png",
+      "androidMode": "default",
+      "androidCollapsedTitle": "Updates from Pourboir",
+      "iosDisplayInForeground": true
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.developerspourboir.pourboir",
+      "buildNumber": "1.0.0",
+      "usesAppleSignIn": true,
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "This app uses location for nearby restaurants",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "This app uses location for nearby restaurants",
+        "NSLocationAlwaysUsageDescription": "This app uses location for nearby restaurants",
+        "CFBundleAllowMixedLocalizations": true,
+        "NSUserTrackingUsageDescription": "This identifier will be used to deliver personalized ads to you."
+      },
+      "config": {
+        "googleSignIn": {
+          "reservedClientId": "com.googleusercontent.apps.849073051273-p2rjj7ir7cmkscv26p5o6il9t4ombfk5"
+        }
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/playstore-icon.png"
+      },
+      "config": {
+        "googleSignIn": {
+          "apiKey": "AIzaSyDHVUwmNlKIiTNhnOi8xzM_vnsilLrJhkA",
+          "certificateHash": "2D1F998CDB943BED21A3831029A25469F04709EE"
+        },
+        "googleMaps": {
+          "apiKey": "AIzaSyDHVUwmNlKIiTNhnOi8xzM_vnsilLrJhkA"
+        }
+      },
+      "useNextNotificationsApi": true,
+      "googleServicesFile": "./google-services.json",
+      "permissions": [
+        "MEDIA_LIBRARY",
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION"
+      ],
+      "package": "com.developerspourboir.pourboir",
+      "versionCode": 7
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}
