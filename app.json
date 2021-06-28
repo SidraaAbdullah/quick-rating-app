@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Pourboir",
-    "slug": "pourboir",
+    "name": "Quick Rating",
+    "slug": "quick_rating",
     "facebookAppId": "771555200360518",
     "facebookScheme": "fb771555200360518",
     "facebookDisplayName": "Pourboir'",
@@ -48,11 +48,11 @@
       },
       "config": {
         "googleSignIn": {
-          "apiKey": "AIzaSyDHVUwmNlKIiTNhnOi8xzM_vnsilLrJhkA",
+          "apiKey": "AIzaSyBAPptEr4vCABmo5yyiEeoF2cT8mx5Wimc",
           "certificateHash": "2D1F998CDB943BED21A3831029A25469F04709EE"
         },
         "googleMaps": {
-          "apiKey": "AIzaSyDHVUwmNlKIiTNhnOi8xzM_vnsilLrJhkA"
+          "apiKey": "AIzaSyBAPptEr4vCABmo5yyiEeoF2cT8mx5Wimc"
         }
       },
       "useNextNotificationsApi": true,
