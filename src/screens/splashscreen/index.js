@@ -17,7 +17,6 @@ import { SEND_PUSH_TOKEN } from '../../queries';
 import Constants from 'expo-constants';
 import * as Localization from 'expo-localization';
 // import * as Device from 'expo-device';
-
 import { requestTrackingPermissionsAsync } from 'expo-tracking-transparency';
 
 Notifications.setNotificationHandler({

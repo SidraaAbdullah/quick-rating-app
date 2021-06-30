@@ -9,9 +9,10 @@ import { getAsyncStorageValues } from './src/constants';
 export default function App() {
   const initialState = useContext(Context);
   const [state, dispatch] = useReducer(Reducer, initialState);
+
   useEffect(() => {
     (async () => {
-      const { manager_details={} } = await getAsyncStorageValues();
+      const { manager_details = {} } = await getAsyncStorageValues();
       if (manager_details?.token)
         axios.defaults.headers.common.Authorization = `Bearer ${manager_details?.token}`;
     })();
