@@ -1,6 +1,6 @@
 import React from 'react';
 import Carousel from '../../components/get-started';
-const GetStarted = () => {
-  return <Carousel />;
+const GetStarted = ({ navigation }) => {
+  return <Carousel navigation={navigation} />;
 };
 export default GetStarted;

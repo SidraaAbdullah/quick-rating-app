@@ -3,7 +3,7 @@ import { FlatList, StyleSheet, Animated, View } from 'react-native';
 import { slider } from '../../constants/slider';
 import { CarouselItem, NextButton, Paginator } from './components';
 
-const Carousel = () => {
+const Carousel = ({ navigation }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const scrollX = useRef(new Animated.Value(0)).current;
   const slidesRef = useRef(null);
@@ -12,15 +12,17 @@ const Carousel = () => {
   }).current;
   const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50 }).current;
   const changeTo = index => {
-    if (typeof index !== 'undefined') {
-      return slidesRef.current.scrollToIndex({ index: index });
+    if (currentIndex < slider.length - 1) {
+      slidesRef.current.scrollToIndex({ index: index });
+    } else {
+      navigation.replace('socialLogin', { crossIcon: false });
     }
   };
   const scrollTo = () => {
     if (currentIndex < slider.length - 1) {
       slidesRef.current.scrollToIndex({ index: currentIndex + 1 });
     } else {
-      console.log('Now show Category');
+      navigation.replace('socialLogin', { crossIcon: false });
     }
   };
   return (
