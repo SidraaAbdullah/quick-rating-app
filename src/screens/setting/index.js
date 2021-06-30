@@ -344,7 +344,6 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.yellow,
     width: '100%',
     height: Dimensions.get('window').height * 0.43,
-    // marginTop: -20,
     borderBottomLeftRadius: 40,
     borderBottomRightRadius: 40,
   },
