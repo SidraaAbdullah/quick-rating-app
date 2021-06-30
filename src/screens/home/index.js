@@ -9,7 +9,6 @@ import { useQuery } from 'react-query';
 import Context from '../../contextApi/context';
 import * as actionTypes from '../../contextApi/actionTypes';
 import { isSearch } from '../../util';
-// import * as FacebookAds from 'expo-ads-facebook';
 
 const HomeScreen = props => {
   const [searchVal, setSearchVal] = useState('');
@@ -18,20 +17,6 @@ const HomeScreen = props => {
   // const [nextPageToken, setnextPageToken] = useState();
   const { state, dispatch } = useContext(Context);
   const { restaurantsDetails: data } = state;
-
-  // FacebookAds.AdSettings.addTestDevice(
-  //   FacebookAds.AdSettings.currentDeviceHash,
-  // );
-  // FacebookAds.AdSettings.setAdvertisingTrackingEnabled(true);
-  // const VALID_ANDROID_PLACEMENT_ID = 'IMG_16_9_APP_INSTALL#YOUR_PLACEMENT_ID';
-  // useEffect(() => {
-  //   FacebookAds.InterstitialAdManager.showAd(VALID_ANDROID_PLACEMENT_ID)
-  //     .then(didClick => {
-  //     })
-  //     .catch(error => {
-  //       // call other ads
-  //     });
-  // }, []);
 
   useEffect(() => {
     (async () => {
@@ -45,30 +30,6 @@ const HomeScreen = props => {
       setsearchEnter('');
     }
   }, [searchVal]);
-
-  // useQuery(
-  //   [
-  //     'GET_YOUR_RES',
-  //     {
-  //       location: saveLocation,
-  //       user_id: userDetails.user_id,
-  //       // pageToken: nextPageToken,
-  //       // max_results: 1,
-  //       // page_no: 1,
-  //     },
-  //   ],
-  //   GET_YOUR_RES,
-  //   {
-  //     ...reactQueryConfig,
-  //     enabled: saveLocation && userDetails.user_id,
-  //     onSuccess: res => {
-  //       dispatch({
-  //         type: actionTypes.YOUR_RESTAURANTS,
-  //         payload: res?.restaurants?.results || [],
-  //       });
-  //     },
-  //   },
-  // );
 
   const {
     data: restaurantData,

@@ -6,7 +6,6 @@ import {
   Image,
   Dimensions,
   TouchableOpacity,
-  ScrollView,
   ImageBackground,
   Linking,
 } from 'react-native';
@@ -176,9 +175,6 @@ const Setting = ({ navigation }) => {
               />
             </View>
           </TouchableOpacity>
-          {/* <View style={styles.viewImg}>
-              <FontAwesome name="user-circle-o" size={120} color="#fff" />
-            </View> */}
           <Text style={[styles.txtName, { fontFamily: 'ProximaNovaBold' }]}>
             {!state?.userDetails?.name
               ? 'Bonjour'
@@ -186,104 +182,15 @@ const Setting = ({ navigation }) => {
           </Text>
         </ImageBackground>
       </View>
-      <View style={styles.viewBtnConatiner}>
-        <ScrollView
-          alwaysBounceHorizontal={false}
-          alwaysBounceVertical={false}
-          bounces={false}
-          showsVerticalScrollIndicator={false}
-        >
-          {/* <TouchableOpacity
-            activeOpacity={0.5}
-            style={[styles.viewItem, { marginBottom: 0 }]}
-            onPress={() => navigation.navigate('personalDetails')}
-          >
-            <View style={styles.viewIcon}>
-              <FontAwesome name="star" size={16} color={Colors.yellow} />
-            </View>
-            <Text
-              style={{
-                fontFamily: 'ProximaNova',
-                color: Colors.fontDark,
-                fontSize: 16,
-              }}
-            >
-              {i18n.t('personal_data')}
-            </Text>
-
-            <View
-              style={{
-                flex: 1,
-                flexDirection: 'row-reverse',
-              }}
-            >
-              <View style={[styles.viewIcon2]}>
-                <FontAwesome name="angle-right" size={26} color={'grey'} />
-              </View>
-            </View>
-          </TouchableOpacity> */}
-
-          {/* <TouchableOpacity
-            activeOpacity={0.5}
-            onPress={() =>
-              navigation.navigate('WaiterProfile', {
-                crossIcon: true,
-              })
-            }
-            style={[styles.viewItem, { marginBottom: 0 }]}
-          >
-            <View style={styles.viewIcon}>
-              <FontAwesome name="cutlery" size={16} color={Colors.yellow} />
-            </View>
-            <Text
-              style={{
-                fontFamily: 'ProximaNova',
-                color: Colors.fontDark,
-                fontSize: 16,
-              }}
-            >
-              {i18n.t('are_you_waiter')}
-            </Text>
-
-            <View
-              style={{
-                flex: 1,
-                flexDirection: 'row-reverse',
-              }}
-            >
-              <View style={[styles.viewIcon2]}>
-                <FontAwesome name="angle-right" size={26} color={'grey'} />
-              </View>
-            </View>
-          </TouchableOpacity> */}
-        </ScrollView>
-        {/* <TouchableOpacity
-        activeOpacity={0.5}
-        disabled={loading}
-        onPress={handleSignOut}
-        style={styles.btnValider}
-      >
-        {loading ? (
-          <ActivityIndicator size={29} color="#EBC11B" />
-        ) : (
-          <Text style={{ fontFamily: 'ProximaNova', fontSize: 16 }}>
-            {i18n.t('sign_out')}
-          </Text>
-        )}
-      </TouchableOpacity> */}
-      </View>
-      <View></View>
 
       <View
         style={{
-          position: 'absolute',
-          bottom: 215,
           width: '100%',
+          marginTop: 30,
         }}
       >
         <TouchableOpacity
           activeOpacity={0.5}
-          // disabled={loading}
           onPress={() =>
             navigation.navigate('WaiterProfile', { crossIcon: true })
           }
@@ -293,70 +200,14 @@ const Setting = ({ navigation }) => {
             {i18n.t('i_waiter')}
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          activeOpacity={0.5}
-          // disabled={loading}
-          onPress={async () => {
-            const { manager_details } = await getAsyncStorageValues();
-            if (manager_details?.token) {
-              navigation.navigate('ManagerStaff');
-            } else {
-              navigation.navigate('SignIn');
-            }
-          }}
-          style={styles.btnValider}
-        >
-          <Text style={{ fontFamily: 'ProximaNova', fontSize: 16 }}>
-            {i18n.t('i_manage')}
-          </Text>
-        </TouchableOpacity>
       </View>
 
-      <View
-        style={{ position: 'absolute', bottom: 70, zIndex: 9999, width: '90%' }}
-      >
+      <View style={{ width: '90%', marginTop: 10 }}>
         <TouchableOpacity
           activeOpacity={0.5}
           style={{
             ...styles.viewItem,
-            borderTopRightRadius: 13,
-            borderTopLeftRadius: 13,
-          }}
-          onPress={() => {
-            // Open the iOS App Store directly
-
-            if (Platform.OS === 'ios') {
-              Linking.openURL(
-                `itms-apps://itunes.apple.com/app/viewContentsUserReviews/id${1552612137}?action=write-review`,
-              );
-            }
-            if (Platform.OS === 'android') {
-              Linking.openURL(
-                `https://play.google.com/store/apps/details?id=com.developerspourboir.pourboir&showAllReviews=true`,
-              );
-            }
-            // StoreReview.requestReview();
-          }}
-        >
-          <View style={styles.viewIcon}>
-            <FontAwesome name="star" size={20} color={Colors.yellow} />
-          </View>
-          <Text
-            style={{
-              fontFamily: 'ProximaNova',
-              color: Colors.fontDark,
-              fontSize: 16,
-            }}
-          >
-            {i18n.t('rate_application')}
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          activeOpacity={0.5}
-          style={{
-            ...styles.viewItem,
-            borderBottomLeftRadius: 13,
-            borderBottomRightRadius: 13,
+            borderRadius: 8,
           }}
           onPress={() => {
             Linking.openURL(`mailto:${email_to}`);
@@ -456,6 +307,7 @@ const styles = StyleSheet.create({
     borderBottomColor: '#F4F4F4',
     borderBottomWidth: 0.8,
     alignItems: 'center',
+    justifyContent: 'center',
     paddingHorizontal: 10,
   },
   btnValider: {
@@ -492,7 +344,6 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.yellow,
     width: '100%',
     height: Dimensions.get('window').height * 0.43,
-    // marginTop: -20,
     borderBottomLeftRadius: 40,
     borderBottomRightRadius: 40,
   },
