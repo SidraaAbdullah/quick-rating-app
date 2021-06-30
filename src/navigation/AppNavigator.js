@@ -25,13 +25,13 @@ import ManagerStaff from '../screens/manager-staff';
 import ManagerSignUp from '../screens/manager-signup';
 import ServerProfile from '../screens/server-profile';
 import NoAppTracking from '../screens/no-app-tracking';
-
+import GetStarted from '../screens/get-started';
 const Stack = createStackNavigator();
 
 function AppNavigator() {
   return (
     <Stack.Navigator
-      initialRouteName="splashScreen"
+      initialRouteName="getStarted"
       screenOptions={{ headerShown: false }}
     >
       <Stack.Screen
@@ -49,6 +49,18 @@ function AppNavigator() {
       <Stack.Screen
         name="socialLogin"
         component={socialLogin}
+        options={() => ({
+          headerShown: true,
+          title: '',
+          headerLeft: null,
+          headerTransparent: true,
+          headerTitleAlign: 'left',
+          headerRightContainerStyle: { paddingRight: spacing(2) },
+        })}
+      />
+      <Stack.Screen
+        name="getStarted"
+        component={GetStarted}
         options={() => ({
           headerShown: true,
           title: '',
