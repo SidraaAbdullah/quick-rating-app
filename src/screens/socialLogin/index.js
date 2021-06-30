@@ -22,7 +22,7 @@ import { GOOGLE_SIGNUP, SEND_PUSH_TOKEN } from '../../queries';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Context from '../../contextApi/context';
 import * as actionTypes from '../../contextApi/actionTypes';
-const imgWaiter = require('../../assets/images/logo-quick.png');
+const logo = require('../../assets/images/logo-without.png');
 import * as Facebook from 'expo-facebook';
 import * as AppleAuthentication from 'expo-apple-authentication';
 import * as Device from 'expo-device';
@@ -30,6 +30,7 @@ import { getAsyncStorageValues } from '../../constants';
 import * as Notifications from 'expo-notifications';
 import * as Localization from 'expo-localization';
 import { LinearGradient } from 'expo-linear-gradient';
+import LottieView from 'lottie-react-native';
 
 const SocialLogin = ({ navigation, route }) => {
   const [city, setCity] = useState();
@@ -298,17 +299,25 @@ const SocialLogin = ({ navigation, route }) => {
           <ActivityIndicator size={70} color={Colors.yellow} />
         ) : (
           <View style={{ width: '100%', alignItems: 'center' }}>
+            <LottieView
+              autoPlay
+              speed={0.7}
+              style={{ width: 250 }}
+              source={require('../../assets/lottie/splash.json')}
+              loop={true}
+            />
             <View
               style={{
                 flexDirection: 'row',
                 width: '100%',
                 alignItems: 'center',
                 justifyContent: 'center',
+                marginTop: -60,
               }}
             >
               <Image
                 style={styles.imgLogoStyle}
-                source={imgWaiter}
+                source={logo}
                 resizeMode="contain"
               />
             </View>
@@ -479,7 +488,7 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
   imgLogoStyle: {
-    width: 350,
+    width: 300,
   },
   btnFb: {
     width: '90%',
