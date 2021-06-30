@@ -12,11 +12,7 @@ const Carousel = ({ navigation }) => {
   }).current;
   const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50 }).current;
   const changeTo = index => {
-    if (currentIndex < slider.length - 1) {
-      slidesRef.current.scrollToIndex({ index: index });
-    } else {
-      navigation.replace('socialLogin', { crossIcon: false });
-    }
+    slidesRef.current.scrollToIndex({ index: index });
   };
   const scrollTo = () => {
     if (currentIndex < slider.length - 1) {

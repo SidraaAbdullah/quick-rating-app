@@ -6,15 +6,31 @@ import {
   useWindowDimensions,
   View,
 } from 'react-native';
+import LottieView from 'lottie-react-native';
 
 const CarouselItem = ({ item }) => {
   const { width } = useWindowDimensions();
   return (
     <View style={[styles.container, { width }]}>
-      <Image
-        source={item.image}
-        style={[styles.image, { width, resizeMode: 'contain' }]}
-      />
+      {item.lottie ? (
+        <LottieView
+          source={item.lottie}
+          autoPlay
+          loop
+          style={[
+            {
+              width: (width * 1) / 1.4,
+              resizeMode: 'contain',
+              marginBottom: 100,
+            },
+          ]}
+        />
+      ) : (
+        <Image
+          source={item.image}
+          style={[styles.image, { width, resizeMode: 'contain' }]}
+        />
+      )}
       <View style={{ flex: 0.3 }}>
         <Text style={styles.title}>{item.title}</Text>
         <Text style={styles.description}>{item.description}</Text>
