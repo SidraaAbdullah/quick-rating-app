@@ -29,6 +29,7 @@ import * as Device from 'expo-device';
 import { getAsyncStorageValues } from '../../constants';
 import * as Notifications from 'expo-notifications';
 import * as Localization from 'expo-localization';
+import { LinearGradient } from 'expo-linear-gradient';
 
 const SocialLogin = ({ navigation, route }) => {
   const [city, setCity] = useState();
@@ -275,34 +276,43 @@ const SocialLogin = ({ navigation, route }) => {
   };
 
   return (
-    <ScrollView
-      alwaysBounceHorizontal={false}
-      alwaysBounceVertical={false}
-      bounces={false}
-      contentContainerStyle={[
-        styles.container,
-        { backgroundColor: loading ? '#fff' : Colors.yellow },
-      ]}
-    >
-      {loading ? (
-        <ActivityIndicator size={70} color={Colors.yellow} />
-      ) : (
-        <View style={{ width: '100%', alignItems: 'center' }}>
-          <View
-            style={{
-              flexDirection: 'row',
-              width: '100%',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            <Image
-              style={styles.imgLogoStyle}
-              source={imgWaiter}
-              resizeMode="contain"
-            />
-          </View>
-          {/* <TouchableOpacity
+    <>
+      <LinearGradient
+        style={{
+          position: 'absolute',
+          width: '100%',
+          height: '100%',
+        }}
+        colors={[Colors.yellow, 'transparent']}
+      />
+      <ScrollView
+        alwaysBounceHorizontal={false}
+        alwaysBounceVertical={false}
+        bounces={false}
+        contentContainerStyle={[
+          styles.container,
+        ]}
+      >
+
+        {loading ? (
+          <ActivityIndicator size={70} color={Colors.yellow} />
+        ) : (
+          <View style={{ width: '100%', alignItems: 'center' }}>
+            <View
+              style={{
+                flexDirection: 'row',
+                width: '100%',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <Image
+                style={styles.imgLogoStyle}
+                source={imgWaiter}
+                resizeMode="contain"
+              />
+            </View>
+            {/* <TouchableOpacity
             activeOpacity={0.5}
             onPress={facebookLogin}
             style={styles.btnFb}
@@ -320,118 +330,119 @@ const SocialLogin = ({ navigation, route }) => {
               {i18n.t('continue_with_fb')}
             </Text>
           </TouchableOpacity> */}
-          <TouchableOpacity
-            activeOpacity={0.5}
-            onPress={handleGoogleSignIn}
-            style={styles.btnGoogle}
-          >
-            <FontAwesome name="google" color="#fff" size={20} />
-            <Text
-              style={[
-                styles.textFb,
-                {
-                  fontSize: 16,
-                  fontFamily: 'ProximaNova',
-                },
-              ]}
+            <TouchableOpacity
+              activeOpacity={0.5}
+              onPress={handleGoogleSignIn}
+              style={styles.btnGoogle}
             >
-              {i18n.t('continue_with_google')}
-            </Text>
-          </TouchableOpacity>
-          {Platform.OS === 'ios' && (
-            <React.Fragment>
-              <TouchableOpacity
-                activeOpacity={0.5}
-                onPress={async () => {
-                  try {
-                    const credential = await AppleAuthentication.signInAsync({
-                      requestedScopes: [
-                        AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
-                        AppleAuthentication.AppleAuthenticationScope.EMAIL,
-                      ],
-                    });
-
-                    let user = {
-                      name: iPhoneLoginName(credential.fullName) || '',
-                      email: credential.email || '',
-                      family_name: credential.fullName?.familyName || '',
-                      id: credential.user || '',
-                      picture: credential.image || '',
-                      city: city,
-                      login_type: 'Facebook',
-                      mobile_type: Device.deviceName || '',
-                      os,
-                    };
-
-                    await googleSignup(user, {
-                      onSuccess: async res => {
-                        if (vote) {
-                          navigation.navigate('RateYourService');
-                          setVote(false);
-                        } else if (confirmWaiter || HelpUs) {
-                          navigation.navigate('OpenCardReviews');
-                        } else {
-                          // navigation.navigate('Home', { crossIcon: false });
-                          navigation.replace('WaiterProfile', { crossIcon: true });
-                        }
-                        let userDetails = {
-                          name: res?.user?.full_name,
-                          // ? userGivenName(res?.user?.full_name)
-                          // : '',
-                          image: res?.user?.picture || '',
-                          email: res?.user?.email || '',
-                          accessToken: credential.authorizationCode || '',
-                          user_id: res?.user?._id || '',
-                        };
-
-                        dispatch({
-                          type: actionTypes.USER_DETAILS,
-                          payload: userDetails,
-                        });
-
-                        await AsyncStorage.setItem(
-                          '@userInfo',
-                          JSON.stringify({
-                            ...userDetails,
-                          }),
-                        );
-                        registerForPushNotifications(res?.user?._id);
-                        setLoading(false);
-                      },
-                      onError: e => {
-                        setLoading(false);
-                        alert(`Apple Login Error: ${e}`);
-                      },
-                    });
-                    // signed in
-                  } catch (e) {
-                    if (e.code === 'ERR_CANCELED') {
-                      // handle that the user canceled the sign-in flow
-                    } else {
-                      // handle other errors
-                    }
-                  }
-                }}
-                style={styles.btnApple}
+              <FontAwesome name="google" color="#fff" size={20} />
+              <Text
+                style={[
+                  styles.textFb,
+                  {
+                    fontSize: 16,
+                    fontFamily: 'ProximaNova',
+                  },
+                ]}
               >
-                <FontAwesome name="apple" color="#fff" size={20} />
-                <Text
-                  style={[
-                    styles.textFb,
-                    {
-                      fontSize: 16,
-                      fontFamily: 'ProximaNova',
-                    },
-                  ]}
+                {i18n.t('continue_with_google')}
+              </Text>
+            </TouchableOpacity>
+            {Platform.OS === 'ios' && (
+              <React.Fragment>
+                <TouchableOpacity
+                  activeOpacity={0.5}
+                  onPress={async () => {
+                    try {
+                      const credential = await AppleAuthentication.signInAsync({
+                        requestedScopes: [
+                          AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
+                          AppleAuthentication.AppleAuthenticationScope.EMAIL,
+                        ],
+                      });
+
+                      let user = {
+                        name: iPhoneLoginName(credential.fullName) || '',
+                        email: credential.email || '',
+                        family_name: credential.fullName?.familyName || '',
+                        id: credential.user || '',
+                        picture: credential.image || '',
+                        city: city,
+                        login_type: 'Facebook',
+                        mobile_type: Device.deviceName || '',
+                        os,
+                      };
+
+                      await googleSignup(user, {
+                        onSuccess: async res => {
+                          if (vote) {
+                            navigation.navigate('RateYourService');
+                            setVote(false);
+                          } else if (confirmWaiter || HelpUs) {
+                            navigation.navigate('OpenCardReviews');
+                          } else {
+                            // navigation.navigate('Home', { crossIcon: false });
+                            navigation.replace('WaiterProfile', { crossIcon: true });
+                          }
+                          let userDetails = {
+                            name: res?.user?.full_name,
+                            // ? userGivenName(res?.user?.full_name)
+                            // : '',
+                            image: res?.user?.picture || '',
+                            email: res?.user?.email || '',
+                            accessToken: credential.authorizationCode || '',
+                            user_id: res?.user?._id || '',
+                          };
+
+                          dispatch({
+                            type: actionTypes.USER_DETAILS,
+                            payload: userDetails,
+                          });
+
+                          await AsyncStorage.setItem(
+                            '@userInfo',
+                            JSON.stringify({
+                              ...userDetails,
+                            }),
+                          );
+                          registerForPushNotifications(res?.user?._id);
+                          setLoading(false);
+                        },
+                        onError: e => {
+                          setLoading(false);
+                          alert(`Apple Login Error: ${e}`);
+                        },
+                      });
+                      // signed in
+                    } catch (e) {
+                      if (e.code === 'ERR_CANCELED') {
+                        // handle that the user canceled the sign-in flow
+                      } else {
+                        // handle other errors
+                      }
+                    }
+                  }}
+                  style={styles.btnApple}
                 >
-                  {i18n.t('continue_with_apple')}
-                </Text>
-              </TouchableOpacity>
-            </React.Fragment>
-          )}
-        </View>
-      )}
-    </ScrollView>
+                  <FontAwesome name="apple" color="#fff" size={20} />
+                  <Text
+                    style={[
+                      styles.textFb,
+                      {
+                        fontSize: 16,
+                        fontFamily: 'ProximaNova',
+                      },
+                    ]}
+                  >
+                    {i18n.t('continue_with_apple')}
+                  </Text>
+                </TouchableOpacity>
+              </React.Fragment>
+            )}
+          </View>
+        )}
+      </ScrollView>
+    </>
   );
 };
 export default SocialLogin;
