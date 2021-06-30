@@ -11,9 +11,7 @@ import {
   ScrollView,
 } from 'react-native';
 import Constants from 'expo-constants';
-import * as WebBrowser from 'expo-web-browser';
-import { FontAwesome, Entypo } from '@expo/vector-icons';
-import CheckBox from 'react-native-check-box';
+import { FontAwesome } from '@expo/vector-icons';
 import { Colors } from '../../constants/Theme';
 import * as Google from 'expo-google-app-auth';
 import i18n from '../../li8n';
@@ -24,7 +22,6 @@ import { GOOGLE_SIGNUP, SEND_PUSH_TOKEN } from '../../queries';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Context from '../../contextApi/context';
 import * as actionTypes from '../../contextApi/actionTypes';
-const imgLogo = require('../../assets/images/imgLogo.png');
 const imgWaiter = require('../../assets/images/logo-quick.png');
 import * as Facebook from 'expo-facebook';
 import * as AppleAuthentication from 'expo-apple-authentication';
