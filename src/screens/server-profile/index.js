@@ -5,6 +5,7 @@ import {
   View,
 } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+import CommonButton from '../../components/common-button';
 import GlobalHeader from '../../components/GlobalHeader';
 import styles from './styles';
 import i18n from '../../li8n';
@@ -82,6 +83,13 @@ const ServerProfile = ({ navigation, route }) => {
               Data={yourRestaurantData?.restaurants?.results || []}
               saveLocation
             />
+            <View style={{ width: '90%', marginTop: 40 }}>
+              <CommonButton
+                title={i18n.t('ind_rest')}
+                navigation={'Home'}
+                navigationData={{ crossIcon: false }}
+              />
+            </View>
           </View>
         </ScrollView>
       </View>

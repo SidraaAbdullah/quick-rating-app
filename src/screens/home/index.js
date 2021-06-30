@@ -76,19 +76,18 @@ const HomeScreen = props => {
         setsearchEnter={setsearchEnter}
         // nextPageToken={nextPageToken}
         Data={data}
-      >
-        <StatusBar translucent={true} style="dark" />
-        <HomeScreenContent
-          restaurantLoading={restaurantLoading}
-          searchVal={searchVal}
-          refetchRestaurant={refetchRestaurant}
-          resIsFetching={resIsFetching}
-          saveLocation={saveLocation}
-          searchEnter={searchEnter}
-          Data={data}
-          route={props?.route}
-        />
-      </Header>
+      />
+      <StatusBar translucent={true} style="dark" />
+      <HomeScreenContent
+        restaurantLoading={restaurantLoading}
+        searchVal={searchVal}
+        refetchRestaurant={refetchRestaurant}
+        resIsFetching={resIsFetching}
+        saveLocation={saveLocation}
+        searchEnter={searchEnter}
+        Data={data}
+        route={props?.route}
+      />
     </>
   );
 };

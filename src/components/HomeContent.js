@@ -177,7 +177,6 @@ export default function HomeScreenContent({
       ) : (
         <ScrollView
           bounces={true}
-          scrollEnabled={false}
           alwaysBounceVertical={true}
           showsVerticalScrollIndicator={false}
           alwaysBounceHorizontal={false}
