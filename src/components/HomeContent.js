@@ -32,7 +32,7 @@ export default function HomeScreenContent({
   resIsFetching,
   searchEnter,
   Data,
-  // saveLocation,
+  saveLocation,
   route,
 }) {
   const [data, setData] = useState([]);
@@ -74,7 +74,7 @@ export default function HomeScreenContent({
     }
   };
   const noData =
-    !data.length && !restaurantLoading && !resIsFetching;
+    !data.length && !restaurantLoading && !resIsFetching && saveLocation;
   if (noData) {
     return (
       <>
@@ -135,7 +135,7 @@ export default function HomeScreenContent({
   }
   return (
     <>
-      {restaurantLoading ? (
+      {(restaurantLoading || !saveLocation) ? (
         <View
           style={{
             backgroundColor: '#F9F9F9',
