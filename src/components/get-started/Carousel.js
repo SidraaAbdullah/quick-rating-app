@@ -11,6 +11,11 @@ const Carousel = () => {
     setCurrentIndex(viewableItems[0].index);
   }).current;
   const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50 }).current;
+  const changeTo = index => {
+    if (typeof index !== 'undefined') {
+      return slidesRef.current.scrollToIndex({ index: index });
+    }
+  };
   const scrollTo = () => {
     if (currentIndex < slider.length - 1) {
       slidesRef.current.scrollToIndex({ index: currentIndex + 1 });
@@ -39,7 +44,7 @@ const Carousel = () => {
           ref={slidesRef}
         />
       </View>
-      <Paginator data={slider} scrollX={scrollX} />
+      <Paginator data={slider} scrollX={scrollX} scrollTo={i => changeTo(i)} />
       <NextButton
         scrollTo={scrollTo}
         percentage={(currentIndex + 1) * (100 / slider.length)}

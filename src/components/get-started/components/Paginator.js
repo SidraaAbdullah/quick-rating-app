@@ -1,6 +1,12 @@
 import React from 'react';
-import { Animated, StyleSheet, useWindowDimensions, View } from 'react-native';
-const Paginator = ({ data, scrollX }) => {
+import {
+  Animated,
+  StyleSheet,
+  useWindowDimensions,
+  View,
+  TouchableOpacity,
+} from 'react-native';
+const Paginator = ({ data, scrollX, scrollTo }) => {
   const { width } = useWindowDimensions();
   return (
     <View style={{ flexDirection: 'row', height: 64 }}>
@@ -17,10 +23,16 @@ const Paginator = ({ data, scrollX }) => {
           extrapolate: 'clamp',
         });
         return (
-          <Animated.View
-            style={[styles.dot, { width: dotWidth, opacity }]}
-            key={i.toString()}
-          />
+          <TouchableOpacity
+            onPress={() => {
+              scrollTo(i);
+            }}
+          >
+            <Animated.View
+              style={[styles.dot, { width: dotWidth, opacity }]}
+              key={i.toString()}
+            />
+          </TouchableOpacity>
         );
       })}
     </View>
