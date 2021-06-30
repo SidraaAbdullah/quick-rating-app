@@ -25,7 +25,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Context from '../../contextApi/context';
 import * as actionTypes from '../../contextApi/actionTypes';
 const imgLogo = require('../../assets/images/imgLogo.png');
-const imgWaiter = require('../../assets/images/waiter2.png');
+const imgWaiter = require('../../assets/images/logo-quick.png');
 import * as Facebook from 'expo-facebook';
 import * as AppleAuthentication from 'expo-apple-authentication';
 import * as Device from 'expo-device';
@@ -40,7 +40,6 @@ const SocialLogin = ({ navigation, route }) => {
   const [vote, setVote] = useState(false);
   const [confirmWaiter, setconfirmWaiter] = useState(false);
   const [HelpUs, setHelpUs] = useState();
-  const [termsChecked, setTermsChecked] = useState(false);
   const [sendNotificationToken] = useMutation(SEND_PUSH_TOKEN);
   const { state, dispatch } = useContext(Context);
   const notificationListener = useRef();
@@ -300,34 +299,14 @@ const SocialLogin = ({ navigation, route }) => {
               justifyContent: 'center',
             }}
           >
-            <TouchableOpacity
-              style={styles.cross}
-              onPress={() => {
-                navigation.navigate('Home', { crossIcon: false });
-                dispatch({
-                  type: actionTypes.REFRESH_ANIMATION,
-                  payload: !state.refreshAnimation,
-                });
-              }}
-            >
-              <Entypo name="cross" size={32} color="black" />
-            </TouchableOpacity>
             <Image
               style={styles.imgLogoStyle}
-              source={imgLogo}
-              resizeMode="contain"
-            />
-          </View>
-          <View style={styles.viewImg}>
-            <Image
-              style={styles.imgStyle}
               source={imgWaiter}
               resizeMode="contain"
             />
           </View>
-          <TouchableOpacity
+          {/* <TouchableOpacity
             activeOpacity={0.5}
-            disabled={termsChecked ? false : true}
             onPress={facebookLogin}
             style={styles.btnFb}
           >
@@ -343,10 +322,9 @@ const SocialLogin = ({ navigation, route }) => {
             >
               {i18n.t('continue_with_fb')}
             </Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
           <TouchableOpacity
             activeOpacity={0.5}
-            disabled={termsChecked ? false : true}
             onPress={handleGoogleSignIn}
             style={styles.btnGoogle}
           >
@@ -367,7 +345,6 @@ const SocialLogin = ({ navigation, route }) => {
             <React.Fragment>
               <TouchableOpacity
                 activeOpacity={0.5}
-                disabled={termsChecked ? false : true}
                 onPress={async () => {
                   try {
                     const credential = await AppleAuthentication.signInAsync({
@@ -455,115 +432,6 @@ const SocialLogin = ({ navigation, route }) => {
               </TouchableOpacity>
             </React.Fragment>
           )}
-          <View>
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                marginRight: 0,
-                paddingTop: 25,
-                paddingBottom: 10,
-                justifyContent: 'center',
-                // marginHorizontal: 60,
-                width: '70%',
-                minHeight: 80,
-              }}
-            >
-              <CheckBox
-                style={{
-                  marginTop: Platform.OS === 'android' ? -3 : -13,
-                }}
-                onClick={() => setTermsChecked(!termsChecked)}
-                isChecked={termsChecked}
-                checkedImage={
-                  <Image
-                    style={{ width: 18 }}
-                    resizeMode={'contain'}
-                    source={require('../../assets/images/checked.png')}
-                  />
-                }
-                unCheckedImage={
-                  <Image
-                    style={{ width: 16 }}
-                    resizeMode={'contain'}
-                    source={require('../../assets/images/unchecked.png')}
-                  />
-                }
-              />
-              <Text
-                style={[
-                  {
-                    textAlign: 'center',
-                    marginLeft: Platform.OS === 'ios' ? 10 : 0,
-                    maxWidth: 320,
-                  },
-                ]}
-              >
-                <View style={{ flexDirection: 'row' }}>
-                  <Text
-                    style={{
-                      color: Colors.fontLight,
-                      textAlign: 'center',
-                      fontSize: 14,
-                      marginLeft: Platform.OS === 'android' ? 15 : 5,
-                    }}
-                    onPress={() => setTermsChecked(!termsChecked)}
-                  >
-                    {i18n.t('I_accept')}{' '}
-                  </Text>
-                  <TouchableOpacity
-                    onPress={() =>
-                      WebBrowser.openBrowserAsync(
-                        'https://pourboir.com/fr/need-help/privacy-policy/',
-                      )
-                    }
-                    // style={{ textAlign: 'center', width: '100%' }}
-                  >
-                    <Text
-                      style={{
-                        color: '#0050A0',
-                        fontSize: 13,
-                        fontFamily: 'ProximaNova',
-                        lineHeight: 24,
-                        textAlign: 'center',
-                        marginTop: Platform.OS === 'android' ? -1 : -2.5,
-                      }}
-                    >
-                      {i18n.t('terms_of_use')}
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-              </Text>
-            </View>
-          </View>
-          {/* <TouchableOpacity
-            activeOpacity={0.5}
-            style={{ marginBottom: 30, marginTop: -10 }}
-            onPress={async () => {
-              const { token } = await getAsyncStorageValues();
-              if (token) {
-                navigation.navigate('ManagerStaff');
-              } else {
-                navigation.navigate('SignIn');
-              }
-            }}
-          >
-            <Text style={{ color: Colors.fontLight }}>
-              {i18n.t('I_am')}{' '}
-              <Text
-                style={{
-                  color: '#0050A0',
-                  fontSize: 14,
-                  fontFamily: 'ProximaNova',
-                  lineHeight: 24,
-                  textAlign: 'center',
-                }}
-              >
-                {i18n.t('manager_res')}
-              </Text>{' '}
-            </Text>
-          </TouchableOpacity> */}
-          {/* <AddNicheModal /> */}
         </View>
       )}
     </ScrollView>
@@ -603,11 +471,7 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
   imgLogoStyle: {
-    width: 200,
-    height: 50,
-    position: 'relative',
-    marginRight: '16%',
-    // marginTop: 10,
+    width: 350,
   },
   btnFb: {
     width: '90%',
