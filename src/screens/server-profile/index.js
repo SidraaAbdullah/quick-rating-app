@@ -73,7 +73,7 @@ const ServerProfile = ({ navigation, route }) => {
           />
         </ImageBackground>
         <ScrollView showsVerticalScrollIndicator={false} bounces={false}>
-          <View style={{ alignItems: 'center', marginTop: '5%' }}>
+          <View style={{marginTop: '5%' }}>
             <HomeScreenContent
               route={route}
               restaurantLoading={yourRestaurantLoading}
@@ -83,7 +83,7 @@ const ServerProfile = ({ navigation, route }) => {
               Data={yourRestaurantData?.restaurants?.results || []}
               saveLocation
             />
-            <View style={{ width: '90%', marginTop: 40 }}>
+            <View style={{ width: '90%', alignSelf: 'center', marginTop: 40 }}>
               <CommonButton
                 title={i18n.t('ind_rest')}
                 navigation={'Home'}
