@@ -88,7 +88,7 @@ export default {
   digital: 'Digital',
 
   //Global Header
-  must_loggedIn: 'You must be logged in to use Pourboir!',
+  must_loggedIn: 'You must be logged in to use Quick Rating!',
   continue_with_apple: 'Continue with Apple',
   cannot_vote: 'You cannot vote yourself',
   already_waiter: 'You are already staff in this restaurant',

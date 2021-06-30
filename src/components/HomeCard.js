@@ -64,7 +64,7 @@ const HomeCard = ({
               zIndex: 100,
               position: 'absolute',
               width: '100%',
-              height: '20%',
+              height: '40%',
             }}
             colors={['rgba(0,0,0,0.5)', 'transparent']}
           />
@@ -101,7 +101,29 @@ const HomeCard = ({
             </TouchableOpacity>
           )}
 
-          <View style={{ zIndex: 101, padding: 12 }}>
+          <View style={{ zIndex: 101, padding: 12, marginTop: 10 }}>
+            <View
+              pointerEvents="none"
+              style={{ flexDirection: 'row', zIndex: 9999 }}
+            >
+              <Text
+                ellipsizeMode="tail"
+                numberOfLines={3}
+                style={[styles.txtName, { fontFamily: 'ProximaNovaBold' }]}
+              >
+                {name}
+              </Text>
+            </View>
+            <Text style={{ color: 'red' }}></Text>
+          </View>
+          <View
+            style={{
+              zIndex: 101,
+              padding: 12,
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+            }}
+          >
             <View
               pointerEvents="none"
               style={{ flexDirection: 'row', zIndex: 9999 }}
@@ -121,8 +143,8 @@ const HomeCard = ({
                         v <= starSelect
                           ? 'filled'
                           : v === starSelect + 0.5
-                            ? 'half'
-                            : 'empty'
+                          ? 'half'
+                          : 'empty'
                       }
                       notRatedStarColor="rgba(255,255,255, 0.6)"
                     />
@@ -130,34 +152,19 @@ const HomeCard = ({
                 );
               })}
             </View>
-            <Text style={{ color: 'red' }}></Text>
-          </View>
-          <View style={{ zIndex: 101, padding: 12 }}>
-            <Text
-              ellipsizeMode="tail"
-              numberOfLines={3}
-              style={[styles.txtName, { fontFamily: 'ProximaNovaBold' }]}
-            >
-              {name}
-            </Text>
-            <View style={styles.view2Card}>
-              <Text style={[styles.txt2Card, { fontFamily: 'ProximaNova' }]}>
-                {distance ? distance + 'm' : ''}
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+              <Text
+                style={{
+                  color: Colors.yellow,
+                  fontFamily: 'ProximaNovaBold',
+                  fontSize: 12,
+                }}
+              >
+                {services + ' '}
               </Text>
-              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <Text
-                  style={{
-                    color: Colors.yellow,
-                    fontFamily: 'ProximaNovaBold',
-                    fontSize: 12,
-                  }}
-                >
-                  {services + ' '}
-                </Text>
-                <Text style={[styles.txt2Card, { fontFamily: 'ProximaNova' }]}>
-                  {services > 1 ? i18n.t('serveurs') : i18n.t('serveur')}
-                </Text>
-              </View>
+              <Text style={[styles.txt2Card, { fontFamily: 'ProximaNova' }]}>
+                {services > 1 ? i18n.t('serveurs') : i18n.t('serveur')}
+              </Text>
             </View>
           </View>
           <LinearGradient
@@ -180,13 +187,6 @@ const HomeCard = ({
 export default HomeCard;
 
 const styles = StyleSheet.create({
-  view2Card: {
-    flexDirection: 'row',
-    width: '100%',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    marginTop: 6,
-  },
   txtName: {
     color: '#fff',
     fontSize: 18,

@@ -2,10 +2,7 @@
   "expo": {
     "name": "Quick Rating",
     "slug": "quick_rating",
-    "facebookAppId": "771555200360518",
-    "facebookScheme": "fb771555200360518",
-    "facebookDisplayName": "Pourboir'",
-    "version": "1.0.9",
+    "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/Serveur-IOS.png",
     "splash": {
@@ -13,9 +10,9 @@
       "resizeMode": "cover"
     },
     "notification": {
-      "icon": "./assets/Serveur.png",
+      "icon": "./assets/qr-icon.png",
       "androidMode": "default",
-      "androidCollapsedTitle": "Updates from Pourboir",
+      "androidCollapsedTitle": "Updates from Quick Rating",
       "iosDisplayInForeground": true
     },
     "updates": {
@@ -26,7 +23,6 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.developerspourboir.pourboir",
       "buildNumber": "1.0.0",
       "usesAppleSignIn": true,
       "infoPlist": {
@@ -56,13 +52,11 @@
         }
       },
       "useNextNotificationsApi": true,
-      "googleServicesFile": "./google-services.json",
       "permissions": [
         "MEDIA_LIBRARY",
         "ACCESS_COARSE_LOCATION",
         "ACCESS_FINE_LOCATION"
       ],
-      "package": "com.developerspourboir.pourboir",
       "versionCode": 7
     },
     "web": {

@@ -1,4 +1,4 @@
-# Pourboir Native Mobile App
+# Native Mobile App
 # Project Title
  The app allows anyone to rate waiters after visiting a restaurant
 
