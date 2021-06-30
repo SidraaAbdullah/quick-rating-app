@@ -31,7 +31,7 @@ const Stack = createStackNavigator();
 function AppNavigator() {
   return (
     <Stack.Navigator
-      initialRouteName="getStarted"
+      initialRouteName="splashScreen"
       screenOptions={{ headerShown: false }}
     >
       <Stack.Screen

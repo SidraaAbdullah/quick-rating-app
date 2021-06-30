@@ -31,6 +31,7 @@ import { userGivenName } from '../../util';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Spinner from 'react-native-loading-spinner-overlay';
 const imgBg = require('../../assets/images/Group5.png');
+import CommonButton from '../../components/common-button';
 
 const Setting = ({ navigation }) => {
   const [loading, setLoading] = useState(false);
@@ -185,21 +186,15 @@ const Setting = ({ navigation }) => {
 
       <View
         style={{
-          width: '100%',
+          width: '90%',
           marginTop: 30,
         }}
       >
-        <TouchableOpacity
-          activeOpacity={0.5}
-          onPress={() =>
-            navigation.navigate('WaiterProfile', { crossIcon: true })
-          }
-          style={{ ...styles.btnValider, marginBottom: 6 }}
-        >
-          <Text style={{ fontFamily: 'ProximaNova', fontSize: 16 }}>
-            {i18n.t('i_waiter')}
-          </Text>
-        </TouchableOpacity>
+        <CommonButton
+          title={i18n.t('i_waiter')}
+          navigation={'WaiterProfile'}
+          navigationData={{ crossIcon: true }}
+        />
       </View>
 
       <View style={{ width: '90%', marginTop: 10 }}>

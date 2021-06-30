@@ -1,7 +1,7 @@
 export default {
   //home card
-  serveur: 'waiter',
-  serveurs: 'waiters',
+  serveur: 'staff',
+  serveurs: 'staff',
   // home
   your_restaurant: 'Your restaurants',
   hello: 'Welcome',
@@ -10,15 +10,15 @@ export default {
   result_distance: 'Result around you',
   you_have_no_restaurant: 'You have no restaurant at the moment',
   search_for_rest_and_add:
-    'Search for your restaurant and add yourself by choosing: You are a waiter',
+    'Search for your restaurant and add yourself by choosing: You are a staff',
   no_restaurant_found: 'Sorry, no restaurant was found',
-  no_waiter_found: 'Sorry, no waiter registered to date',
+  no_waiter_found: 'Sorry, no staff registered to date',
 
   // Open card reviews
-  waiters: 'Waiters',
-  cant_find_your_server: 'Cannot find your waiter?',
-  add_your_server: 'Add your waiter',
-  are_you_waiter: 'Are you a waiter?',
+  waiters: 'Staff',
+  cant_find_your_server: 'Cannot find your staff?',
+  add_your_server: 'Add your staff',
+  are_you_waiter: 'Are you a staff?',
   see_the_menu: 'See the menu',
   please_fill: 'Please fill in this information',
   nom_de: 'Company Name',
@@ -34,7 +34,7 @@ export default {
   speed: 'Speed',
   service: 'Service',
   professionalism: 'Professionalism',
-  your_tip_to_waiter: 'Your tip to the waiter',
+  your_tip_to_waiter: 'Your tip to the staff',
   enter_your_amount: 'Enter your amount',
   validate: 'Validate',
 
@@ -47,9 +47,9 @@ export default {
   rate_application: 'Rate the application',
   contact_us: 'Contact us',
   personal_data: 'Personal data',
-  // are_you_a_waiter   open card reviews
+  // are_you_a_staff   open card reviews
   sign_out: 'Sign out',
-  i_waiter: 'I am waiter',
+  i_waiter: 'I am staff',
   i_manage: 'I manage a restaurant',
 
   // Social Login
@@ -61,14 +61,14 @@ export default {
   manager_res: 'restaurateur',
 
   //Popup Confirm you are a server
-  confrm_you_are_server: 'Confirm that you are a waiter for',
+  confrm_you_are_server: 'Confirm that you are a staff for',
   i_confirm: 'I confirm',
 
   // Popup help us improve
-  help_us_improve: 'Help us improve our app. Give us the name of your waiter',
+  help_us_improve: 'Help us improve our app. Give us the name of your staff',
   will_contact_shortly: 'We will contact him shortly to add him to our app.',
-  name_of_your_server: 'The name of your waiter',
-  waiter_email: 'Your waiter email',
+  name_of_your_server: 'The name of your staff',
+  waiter_email: 'Your staff email',
   add: 'Add',
   check_profile:
     'We check your profile internally and will be validated within 24 hours',
@@ -77,7 +77,7 @@ export default {
 
   // Popup thanks for vote
   thank_collaboration: 'thank you for your collaboration',
-  waiter_our_database: 'The waiter has been added to our database',
+  waiter_our_database: 'The staff has been added to our database',
   thanks_for_vote: 'Thanks for your vote',
   will_contact_by_email:
     'We are offering you a unique code for our next lottery.',
@@ -91,7 +91,7 @@ export default {
   must_loggedIn: 'You must be logged in to use Pourboir!',
   continue_with_apple: 'Continue with Apple',
   cannot_vote: 'You cannot vote yourself',
-  already_waiter: 'You are already waiter in this restaurant',
+  already_waiter: 'You are already staff in this restaurant',
 
   // Personal Details
   personal_info: 'Personal Information',
@@ -185,10 +185,10 @@ export default {
   prof_exp: 'Professional Experience',
   add_exp: 'Add an experience',
   add_niche: 'Add a niche',
-  profile_server: 'Waiter Profile',
+  profile_server: 'staff Profile',
   no_restaurant: 'You have no restaurant at the moment',
   search_rest: 'Search for your restaurant and add yourself by choosing',
-  you_waiter: 'You are a waiter',
+  you_waiter: 'Add staff',
   ind_rest: 'I indicate the restaure where I work',
   are_you_job: 'Are you looking for a job or want to complete your income',
   comp_job: 'Complete your job search profile and receive o! ers quickly',
@@ -207,7 +207,7 @@ export default {
   morning: 'Morning',
   noon: 'Noon',
   evening: 'Evening',
-  waiter: 'Waiter',
+  waiter: 'Staff',
   contact: 'Contact',
   //no tracking
   activate_app_tracking: 'We need your permission to track your activity and offer you a better user experience',
