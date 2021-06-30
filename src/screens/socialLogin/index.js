@@ -11,9 +11,7 @@ import {
   ScrollView,
 } from 'react-native';
 import Constants from 'expo-constants';
-import * as WebBrowser from 'expo-web-browser';
-import { FontAwesome, Entypo } from '@expo/vector-icons';
-import CheckBox from 'react-native-check-box';
+import { FontAwesome } from '@expo/vector-icons';
 import { Colors } from '../../constants/Theme';
 import * as Google from 'expo-google-app-auth';
 import i18n from '../../li8n';
@@ -24,14 +22,15 @@ import { GOOGLE_SIGNUP, SEND_PUSH_TOKEN } from '../../queries';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Context from '../../contextApi/context';
 import * as actionTypes from '../../contextApi/actionTypes';
-const imgLogo = require('../../assets/images/imgLogo.png');
-const imgWaiter = require('../../assets/images/waiter2.png');
+const logo = require('../../assets/images/logo-without.png');
 import * as Facebook from 'expo-facebook';
 import * as AppleAuthentication from 'expo-apple-authentication';
 import * as Device from 'expo-device';
 import { getAsyncStorageValues } from '../../constants';
 import * as Notifications from 'expo-notifications';
 import * as Localization from 'expo-localization';
+import { LinearGradient } from 'expo-linear-gradient';
+import LottieView from 'lottie-react-native';
 
 const SocialLogin = ({ navigation, route }) => {
   const [city, setCity] = useState();
@@ -40,7 +39,6 @@ const SocialLogin = ({ navigation, route }) => {
   const [vote, setVote] = useState(false);
   const [confirmWaiter, setconfirmWaiter] = useState(false);
   const [HelpUs, setHelpUs] = useState();
-  const [termsChecked, setTermsChecked] = useState(false);
   const [sendNotificationToken] = useMutation(SEND_PUSH_TOKEN);
   const { state, dispatch } = useContext(Context);
   const notificationListener = useRef();
@@ -279,55 +277,52 @@ const SocialLogin = ({ navigation, route }) => {
   };
 
   return (
-    <ScrollView
-      alwaysBounceHorizontal={false}
-      alwaysBounceVertical={false}
-      bounces={false}
-      contentContainerStyle={[
-        styles.container,
-        { backgroundColor: loading ? '#fff' : Colors.yellow },
-      ]}
-    >
-      {loading ? (
-        <ActivityIndicator size={70} color={Colors.yellow} />
-      ) : (
-        <View style={{ width: '100%', alignItems: 'center' }}>
-          <View
-            style={{
-              flexDirection: 'row',
-              width: '100%',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            <TouchableOpacity
-              style={styles.cross}
-              onPress={() => {
-                navigation.navigate('Home', { crossIcon: false });
-                dispatch({
-                  type: actionTypes.REFRESH_ANIMATION,
-                  payload: !state.refreshAnimation,
-                });
+    <>
+      <LinearGradient
+        style={{
+          position: 'absolute',
+          width: '100%',
+          height: '100%',
+        }}
+        colors={[Colors.yellow, 'transparent']}
+      />
+      <ScrollView
+        alwaysBounceHorizontal={false}
+        alwaysBounceVertical={false}
+        bounces={false}
+        contentContainerStyle={[
+          styles.container,
+        ]}
+      >
+
+        {loading ? (
+          <ActivityIndicator size={70} color={Colors.yellow} />
+        ) : (
+          <View style={{ width: '100%', alignItems: 'center' }}>
+            <LottieView
+              autoPlay
+              speed={0.7}
+              style={{ width: 250 }}
+              source={require('../../assets/lottie/splash.json')}
+              loop={true}
+            />
+            <View
+              style={{
+                flexDirection: 'row',
+                width: '100%',
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginTop: -60,
               }}
             >
-              <Entypo name="cross" size={32} color="black" />
-            </TouchableOpacity>
-            <Image
-              style={styles.imgLogoStyle}
-              source={imgLogo}
-              resizeMode="contain"
-            />
-          </View>
-          <View style={styles.viewImg}>
-            <Image
-              style={styles.imgStyle}
-              source={imgWaiter}
-              resizeMode="contain"
-            />
-          </View>
-          <TouchableOpacity
+              <Image
+                style={styles.imgLogoStyle}
+                source={logo}
+                resizeMode="contain"
+              />
+            </View>
+            {/* <TouchableOpacity
             activeOpacity={0.5}
-            disabled={termsChecked ? false : true}
             onPress={facebookLogin}
             style={styles.btnFb}
           >
@@ -343,230 +338,120 @@ const SocialLogin = ({ navigation, route }) => {
             >
               {i18n.t('continue_with_fb')}
             </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            activeOpacity={0.5}
-            disabled={termsChecked ? false : true}
-            onPress={handleGoogleSignIn}
-            style={styles.btnGoogle}
-          >
-            <FontAwesome name="google" color="#fff" size={20} />
-            <Text
-              style={[
-                styles.textFb,
-                {
-                  fontSize: 16,
-                  fontFamily: 'ProximaNova',
-                },
-              ]}
+          </TouchableOpacity> */}
+            <TouchableOpacity
+              activeOpacity={0.5}
+              onPress={handleGoogleSignIn}
+              style={styles.btnGoogle}
             >
-              {i18n.t('continue_with_google')}
-            </Text>
-          </TouchableOpacity>
-          {Platform.OS === 'ios' && (
-            <React.Fragment>
-              <TouchableOpacity
-                activeOpacity={0.5}
-                disabled={termsChecked ? false : true}
-                onPress={async () => {
-                  try {
-                    const credential = await AppleAuthentication.signInAsync({
-                      requestedScopes: [
-                        AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
-                        AppleAuthentication.AppleAuthenticationScope.EMAIL,
-                      ],
-                    });
-
-                    let user = {
-                      name: iPhoneLoginName(credential.fullName) || '',
-                      email: credential.email || '',
-                      family_name: credential.fullName?.familyName || '',
-                      id: credential.user || '',
-                      picture: credential.image || '',
-                      city: city,
-                      login_type: 'Facebook',
-                      mobile_type: Device.deviceName || '',
-                      os,
-                    };
-
-                    await googleSignup(user, {
-                      onSuccess: async res => {
-                        if (vote) {
-                          navigation.navigate('RateYourService');
-                          setVote(false);
-                        } else if (confirmWaiter || HelpUs) {
-                          navigation.navigate('OpenCardReviews');
-                        } else {
-                          // navigation.navigate('Home', { crossIcon: false });
-                          navigation.replace('WaiterProfile', { crossIcon: true });
-                        }
-                        let userDetails = {
-                          name: res?.user?.full_name,
-                          // ? userGivenName(res?.user?.full_name)
-                          // : '',
-                          image: res?.user?.picture || '',
-                          email: res?.user?.email || '',
-                          accessToken: credential.authorizationCode || '',
-                          user_id: res?.user?._id || '',
-                        };
-
-                        dispatch({
-                          type: actionTypes.USER_DETAILS,
-                          payload: userDetails,
-                        });
-
-                        await AsyncStorage.setItem(
-                          '@userInfo',
-                          JSON.stringify({
-                            ...userDetails,
-                          }),
-                        );
-                        registerForPushNotifications(res?.user?._id);
-                        setLoading(false);
-                      },
-                      onError: e => {
-                        setLoading(false);
-                        alert(`Apple Login Error: ${e}`);
-                      },
-                    });
-                    // signed in
-                  } catch (e) {
-                    if (e.code === 'ERR_CANCELED') {
-                      // handle that the user canceled the sign-in flow
-                    } else {
-                      // handle other errors
-                    }
-                  }
-                }}
-                style={styles.btnApple}
-              >
-                <FontAwesome name="apple" color="#fff" size={20} />
-                <Text
-                  style={[
-                    styles.textFb,
-                    {
-                      fontSize: 16,
-                      fontFamily: 'ProximaNova',
-                    },
-                  ]}
-                >
-                  {i18n.t('continue_with_apple')}
-                </Text>
-              </TouchableOpacity>
-            </React.Fragment>
-          )}
-          <View>
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                marginRight: 0,
-                paddingTop: 25,
-                paddingBottom: 10,
-                justifyContent: 'center',
-                // marginHorizontal: 60,
-                width: '70%',
-                minHeight: 80,
-              }}
-            >
-              <CheckBox
-                style={{
-                  marginTop: Platform.OS === 'android' ? -3 : -13,
-                }}
-                onClick={() => setTermsChecked(!termsChecked)}
-                isChecked={termsChecked}
-                checkedImage={
-                  <Image
-                    style={{ width: 18 }}
-                    resizeMode={'contain'}
-                    source={require('../../assets/images/checked.png')}
-                  />
-                }
-                unCheckedImage={
-                  <Image
-                    style={{ width: 16 }}
-                    resizeMode={'contain'}
-                    source={require('../../assets/images/unchecked.png')}
-                  />
-                }
-              />
+              <FontAwesome name="google" color="#fff" size={20} />
               <Text
                 style={[
+                  styles.textFb,
                   {
-                    textAlign: 'center',
-                    marginLeft: Platform.OS === 'ios' ? 10 : 0,
-                    maxWidth: 320,
+                    fontSize: 16,
+                    fontFamily: 'ProximaNova',
                   },
                 ]}
               >
-                <View style={{ flexDirection: 'row' }}>
-                  <Text
-                    style={{
-                      color: Colors.fontLight,
-                      textAlign: 'center',
-                      fontSize: 14,
-                      marginLeft: Platform.OS === 'android' ? 15 : 5,
-                    }}
-                    onPress={() => setTermsChecked(!termsChecked)}
-                  >
-                    {i18n.t('I_accept')}{' '}
-                  </Text>
-                  <TouchableOpacity
-                    onPress={() =>
-                      WebBrowser.openBrowserAsync(
-                        'https://pourboir.com/fr/need-help/privacy-policy/',
-                      )
-                    }
-                    // style={{ textAlign: 'center', width: '100%' }}
-                  >
-                    <Text
-                      style={{
-                        color: '#0050A0',
-                        fontSize: 13,
-                        fontFamily: 'ProximaNova',
-                        lineHeight: 24,
-                        textAlign: 'center',
-                        marginTop: Platform.OS === 'android' ? -1 : -2.5,
-                      }}
-                    >
-                      {i18n.t('terms_of_use')}
-                    </Text>
-                  </TouchableOpacity>
-                </View>
+                {i18n.t('continue_with_google')}
               </Text>
-            </View>
+            </TouchableOpacity>
+            {Platform.OS === 'ios' && (
+              <React.Fragment>
+                <TouchableOpacity
+                  activeOpacity={0.5}
+                  onPress={async () => {
+                    try {
+                      const credential = await AppleAuthentication.signInAsync({
+                        requestedScopes: [
+                          AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
+                          AppleAuthentication.AppleAuthenticationScope.EMAIL,
+                        ],
+                      });
+
+                      let user = {
+                        name: iPhoneLoginName(credential.fullName) || '',
+                        email: credential.email || '',
+                        family_name: credential.fullName?.familyName || '',
+                        id: credential.user || '',
+                        picture: credential.image || '',
+                        city: city,
+                        login_type: 'Facebook',
+                        mobile_type: Device.deviceName || '',
+                        os,
+                      };
+
+                      await googleSignup(user, {
+                        onSuccess: async res => {
+                          if (vote) {
+                            navigation.navigate('RateYourService');
+                            setVote(false);
+                          } else if (confirmWaiter || HelpUs) {
+                            navigation.navigate('OpenCardReviews');
+                          } else {
+                            // navigation.navigate('Home', { crossIcon: false });
+                            navigation.replace('WaiterProfile', { crossIcon: true });
+                          }
+                          let userDetails = {
+                            name: res?.user?.full_name,
+                            // ? userGivenName(res?.user?.full_name)
+                            // : '',
+                            image: res?.user?.picture || '',
+                            email: res?.user?.email || '',
+                            accessToken: credential.authorizationCode || '',
+                            user_id: res?.user?._id || '',
+                          };
+
+                          dispatch({
+                            type: actionTypes.USER_DETAILS,
+                            payload: userDetails,
+                          });
+
+                          await AsyncStorage.setItem(
+                            '@userInfo',
+                            JSON.stringify({
+                              ...userDetails,
+                            }),
+                          );
+                          registerForPushNotifications(res?.user?._id);
+                          setLoading(false);
+                        },
+                        onError: e => {
+                          setLoading(false);
+                          alert(`Apple Login Error: ${e}`);
+                        },
+                      });
+                      // signed in
+                    } catch (e) {
+                      if (e.code === 'ERR_CANCELED') {
+                        // handle that the user canceled the sign-in flow
+                      } else {
+                        // handle other errors
+                      }
+                    }
+                  }}
+                  style={styles.btnApple}
+                >
+                  <FontAwesome name="apple" color="#fff" size={20} />
+                  <Text
+                    style={[
+                      styles.textFb,
+                      {
+                        fontSize: 16,
+                        fontFamily: 'ProximaNova',
+                      },
+                    ]}
+                  >
+                    {i18n.t('continue_with_apple')}
+                  </Text>
+                </TouchableOpacity>
+              </React.Fragment>
+            )}
           </View>
-          {/* <TouchableOpacity
-            activeOpacity={0.5}
-            style={{ marginBottom: 30, marginTop: -10 }}
-            onPress={async () => {
-              const { token } = await getAsyncStorageValues();
-              if (token) {
-                navigation.navigate('ManagerStaff');
-              } else {
-                navigation.navigate('SignIn');
-              }
-            }}
-          >
-            <Text style={{ color: Colors.fontLight }}>
-              {i18n.t('I_am')}{' '}
-              <Text
-                style={{
-                  color: '#0050A0',
-                  fontSize: 14,
-                  fontFamily: 'ProximaNova',
-                  lineHeight: 24,
-                  textAlign: 'center',
-                }}
-              >
-                {i18n.t('manager_res')}
-              </Text>{' '}
-            </Text>
-          </TouchableOpacity> */}
-          {/* <AddNicheModal /> */}
-        </View>
-      )}
-    </ScrollView>
+        )}
+      </ScrollView>
+    </>
   );
 };
 export default SocialLogin;
@@ -603,11 +488,7 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
   imgLogoStyle: {
-    width: 200,
-    height: 50,
-    position: 'relative',
-    marginRight: '16%',
-    // marginTop: 10,
+    width: 300,
   },
   btnFb: {
     width: '90%',
