@@ -32,7 +32,8 @@ const Carousel = ({ navigation }) => {
           data={slider}
           renderItem={({ item }) => <CarouselItem item={item} />}
           horizontal
-          showsHorizontalScrollIndicator
+          showsHorizontalScrollIndicator={false}
+          showsVerticalScrollIndicator={false}
           pagingEnabled
           bounces={false}
           keyExtractor={item => item.id}

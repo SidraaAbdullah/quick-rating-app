@@ -69,10 +69,6 @@ const RateService = ({ navigation, route }) => {
   const handleTokenModalClose = () => {
     setTokenModalIsVisible(false);
     navigation.navigate('Home', { crossIcon: false });
-    dispatch({
-      type: actionTypes.REFRESH_ANIMATION,
-      payload: !state.refreshAnimation,
-    });
   };
   const handlePayDigital = () => {
     setPayMethodsIsVisible(false);
@@ -116,11 +112,6 @@ const RateService = ({ navigation, route }) => {
         onError: () => {
           setLoading(false);
           alert('You can only vote once today.');
-          // navigation.navigate('Home', { crossIcon: false });
-          // dispatch({
-          //   type: actionTypes.REFRESH_ANIMATION,
-          //   payload: !state.refreshAnimation,
-          // });
         },
       });
     } else {

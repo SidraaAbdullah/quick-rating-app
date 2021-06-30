@@ -1,7 +1,7 @@
 export default {
   //home card
-  serveur: 'serveur',
-  serveurs: 'serveurs',
+  serveur: 'Personnel',
+  serveurs: 'Personnels',
   // home
   your_restaurant: 'Vos restaurants',
   hello: 'Bonjour',
@@ -10,15 +10,15 @@ export default {
   result_distance: 'Résultat autour de vous',
   you_have_no_restaurant: 'Vous n’avez aucun restaurant pour le moment',
   search_for_rest_and_add:
-    'Recherchez votre restaurant et ajoutez vous en choisissant: Vous êtes serveur',
+    'Recherchez votre restaurant et ajoutez vous en choisissant: Vous êtes Personnel',
   no_restaurant_found: 'Désolé, aucun restaurant n’a été trouvé',
-  no_waiter_found: 'Désolé, aucun serveur inscrit à ce jour',
+  no_waiter_found: 'Désolé, aucun Personnel inscrit à ce jour',
 
   // Open card reviews
-  waiters: 'Les serveurs',
-  cant_find_your_server: 'Vous ne trouvez pas votre serveur?',
-  add_your_server: 'Ajoutez votre serveur',
-  are_you_waiter: 'Vous êtes serveur?',
+  waiters: 'Les Personnels',
+  cant_find_your_server: 'Vous ne trouvez pas votre Personnel?',
+  add_your_server: 'Ajoutez votre Personnel',
+  are_you_waiter: 'Vous êtes Personnel?',
   see_the_menu: 'Voir le menu',
   please_fill: 'Veuillez remplir ces informations',
   nom_de: `Nom de l'entreprise`,
@@ -29,12 +29,12 @@ export default {
   none: 'rien',
 
   // Rate your server
-  rate_your_server: 'Notez votre serveur',
+  rate_your_server: 'Notez votre Personnel',
   hospitality: 'Hospitalité',
   speed: 'Rapidité',
   service: 'Service',
   professionalism: 'Professionalisme',
-  your_tip_to_waiter: 'Votre pourboire au serveur',
+  your_tip_to_waiter: 'Votre pourboire au Personnel',
   enter_your_amount: 'Entrez le montant',
   validate: 'Valider',
   close: 'Fermer',
@@ -50,7 +50,7 @@ export default {
   personal_data: 'Données personnels',
   // are_you_a_waiter   open card reviews
   sign_out: 'Se déconnecter',
-  i_waiter: 'Je suis serveur',
+  i_waiter: 'Je suis Personnel',
   i_manage: 'Je gère un restaurant',
 
   // Social Login
@@ -62,16 +62,16 @@ export default {
   manager_res: 'restaurateur',
 
   //Popup Confirm you are a server
-  confrm_you_are_server: 'Confirmez que vous êtes serveur pour',
+  confrm_you_are_server: 'Confirmez que vous êtes Personnel pour',
   i_confirm: 'Je confirme',
 
   // Popup help us improve
   help_us_improve:
-    'Aidez-nous à enrichir les données. Donnez nous le nom de votre serveur',
+    'Aidez-nous à enrichir les données. Donnez nous le nom de votre Personnel',
   will_contact_shortly:
     'Nous le contacterons rapidement pour l’ajouter dans l&apos;application.',
-  name_of_your_server: 'Le nom de votre serveur',
-  waiter_email: 'L’email de votre serveur',
+  name_of_your_server: 'Le nom de votre Personnel',
+  waiter_email: 'L’email de votre Personnel',
   add: 'Ajouter',
   check_profile:
     'Nous vérifions votre profil en interne et sera validé sous 24 heures',
@@ -80,14 +80,14 @@ export default {
   // Popup thanks for vote
   thank_collaboration: 'Merci de votre collaboration',
   waiter_our_database:
-    'Le serveur a bien été ajouté dans notre base de données',
+    'Le Personnel a bien été ajouté dans notre base de données',
   thanks_for_vote: 'Merci pour votre vote',
   will_contact_by_email:
     'Nous vous offrons un coupon pour la prochaine loterie',
-  must_loggedIn: 'Vous devez être connecté pour utiliser Pourboir!',
+  must_loggedIn: 'Vous devez être connecté pour utiliser quick rating!',
   continue_with_apple: 'Continuer avec Apple',
   cannot_vote: 'Vous ne pouvez pas voter vous-même',
-  already_waiter: 'Vous êtes déjà serveur dans ce restaurant',
+  already_waiter: 'Vous êtes déjà Personnel dans ce restaurant',
 
   // Popup pay your tip
   pay_your_tip: 'Payez votre pourboire',
@@ -189,10 +189,10 @@ export default {
   prof_exp: 'Expérience professionnelles',
   add_niche: 'Ajoutez un créneau',
   start_date: 'Date de début',
-  profile_server: 'Serveur Profil',
+  profile_server: 'Personnel Profil',
   no_restaurant: 'Vous n’avez aucun restaurant pour le moment',
   search_rest: 'Recherchez votre restaurant et ajoutez vous en choisissant',
-  you_waiter: 'Vous êtes serveur',
+  you_waiter: 'Vous êtes personnel',
   ind_rest: 'Indique le restaurant où tu travailles',
   are_you_job: ' Vous recherchez un emploi ou souhaitez compléter vos revenus',
   comp_job:
@@ -212,7 +212,7 @@ export default {
   morning: 'Matin',
   noon: 'Midi',
   evening: 'Soirée',
-  waiter: 'Serveur',
+  waiter: 'Personnel',
   contact: 'Contact',
   //no app tracking
   activate_app_tracking: `Il nous faut votre accord pour une meilleure expérience d’utilisation`,

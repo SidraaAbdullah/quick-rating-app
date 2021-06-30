@@ -88,12 +88,6 @@ const ServerProfile = ({ navigation, route }) => {
                 title={i18n.t('ind_rest')}
                 navigation={'Home'}
                 navigationData={{ crossIcon: false }}
-                dispatch={() => {
-                  dispatch({
-                    type: actionTypes.REFRESH_ANIMATION,
-                    payload: !state.refreshAnimation,
-                  });
-                }}
               />
             </View>
           </View>

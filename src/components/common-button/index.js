@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { Colors } from '../../constants/Theme';
+import { LinearGradient } from 'expo-linear-gradient';
 
 const CommonButton = props => {
   const [loading, setLoading] = useState(false);
@@ -26,6 +27,15 @@ const CommonButton = props => {
       }}
       style={styles.btnValider}
     >
+      <LinearGradient
+        style={{
+          position: 'absolute',
+          width: '100%',
+          height: '100%',
+          borderRadius: 8,
+        }}
+        colors={[Colors.yellow, Colors.yellow, Colors.lightYellow]}
+      />
       {loading ? (
         <ActivityIndicator size={29} color="#EBC11B" />
       ) : (
@@ -41,7 +51,6 @@ export default CommonButton;
 
 const styles = StyleSheet.create({
   btnValider: {
-    backgroundColor: Colors.yellow,
     width: '100%',
     justifyContent: 'center',
     alignItems: 'center',

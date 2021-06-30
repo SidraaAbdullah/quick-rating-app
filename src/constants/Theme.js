@@ -3,6 +3,7 @@ export const Colors = {
   fontDark: '#1E272E',
   fontLight: '#485460',
   yellow: '#FFD088',
+  lightYellow: '#FFDFAD',
 };
 
 export const Fonts = {
