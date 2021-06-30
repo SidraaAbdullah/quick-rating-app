@@ -1,7 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React, {
   useLayoutEffect,
-  useRef,
   useEffect,
   useState,
   useContext,
@@ -12,26 +11,18 @@ import {
   View,
   TouchableOpacity,
   Image,
-  RefreshControl,
   Dimensions,
   ImageBackground,
-  ScrollView,
 } from 'react-native';
 import { SvgHeaderSearchIcon } from '../../components/svg/header_search_icon';
-import { SvgHeaderUserIcon } from '../../components/svg/header_user_icon';
-import { COLORS } from '../../constants/colors';
 import { HEADER_BAR_HEIGHT, spacing } from '../../constants/layout';
 import { AntDesign, FontAwesome } from '@expo/vector-icons';
 import i18n from '../../li8n';
 import Context from '../../contextApi/context';
-// import { ActivityIndicator } from 'react-native';
-// import { useFocusEffect } from '@react-navigation/native';
 import { userGivenName } from '../../util';
-import { LinearGradient } from 'expo-linear-gradient';
-import { Colors } from '../../constants/Theme';
+
 
 const HomeScreen = props => {
-  const scrollRef = useRef(null);
   const TextInputRef = React.useRef(null);
   const { state } = useContext(Context);
   const [loading, setLoading] = useState(false);
