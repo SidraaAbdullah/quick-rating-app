@@ -17,7 +17,7 @@ export default function App() {
     (async () => {
       const { manager_details = {} } = await getAsyncStorageValues();
       const { AppVisited } = await getAsyncStorageValues();
-      setAppVisited(AppVisited.appVisited || false);
+      setAppVisited(AppVisited?.appVisited);
       setLoading(false);
       if (manager_details?.token)
         axios.defaults.headers.common.Authorization = `Bearer ${manager_details?.token}`;
@@ -31,7 +31,7 @@ export default function App() {
   return (
     <Context.Provider value={{ state, dispatch }}>
       <NavigationContainer>
-        <RootNavigator appVisited={appVisited} />
+        <RootNavigator appVisited={appVisited || false} />
       </NavigationContainer>
     </Context.Provider>
   );

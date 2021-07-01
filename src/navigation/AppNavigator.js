@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import splashScreen from '../screens/splashscreen';
@@ -26,19 +26,31 @@ import ManagerSignUp from '../screens/manager-signup';
 import ServerProfile from '../screens/server-profile';
 import NoAppTracking from '../screens/no-app-tracking';
 import GetStarted from '../screens/get-started';
+import Categories from '../screens/category';
 
 const Stack = createStackNavigator();
 
-function AppNavigator({appVisited}) {
-
+function AppNavigator({ appVisited }) {
   return (
     <Stack.Navigator
-      initialRouteName= {appVisited ? "splashScreen" : "getStarted"}
+      initialRouteName={appVisited ? 'splashScreen' : 'getStarted'}
       screenOptions={{ headerShown: false }}
     >
       <Stack.Screen
         name="splashScreen"
         component={splashScreen}
+        options={() => ({
+          headerShown: true,
+          title: '',
+          headerLeft: null,
+          headerTransparent: true,
+          headerTitleAlign: 'left',
+          headerRightContainerStyle: { paddingRight: spacing(2) },
+        })}
+      />
+      <Stack.Screen
+        name="Categories"
+        component={Categories}
         options={() => ({
           headerShown: true,
           title: '',
