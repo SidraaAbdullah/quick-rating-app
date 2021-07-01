@@ -23,6 +23,7 @@ const HomeScreen = props => {
       const { location } = await getAsyncStorageValues();
       setSaveLocation(location);
     })();
+    console.log(props.route.params.category);
   }, []);
 
   useEffect(() => {
@@ -42,6 +43,7 @@ const HomeScreen = props => {
       {
         location: saveLocation,
         search: isSearch(searchVal, searchEnter),
+        category: props.route.params.category,
         // pageToken: nextPageToken,
       },
     ],

@@ -136,7 +136,7 @@ export default function SplashScreen(props) {
         //     routes: [{ name: 'NoLocation' }],
         //   }),
         // );
-        props.navigation.replace('Home', { crossIcon: false });
+        props.navigation.replace('Categories', { crossIcon: false });
       }
 
       const isLocation = await Location.hasServicesEnabledAsync();
@@ -147,7 +147,10 @@ export default function SplashScreen(props) {
 
         NetInfo.fetch().then(state => {
           if (state.isConnected && userInfo?.user_id) {
-            props.navigation.replace('Home', { crossIcon: false, ad: true });
+            props.navigation.replace('Categories', {
+              crossIcon: false,
+              ad: true,
+            });
           } else if (state.isConnected && !userInfo?.user_id) {
             props.navigation.replace('socialLogin');
           } else {
@@ -190,7 +193,10 @@ export default function SplashScreen(props) {
         });
         NetInfo.fetch().then(state => {
           if (state.isConnected && userInfo?.user_id) {
-            props.navigation.replace('Home', { crossIcon: false, ad: true });
+            props.navigation.replace('Categories', {
+              crossIcon: false,
+              ad: true,
+            });
           } else if (state.isConnected && !userInfo?.user_id) {
             props.navigation.replace('socialLogin');
           } else {
@@ -213,10 +219,7 @@ export default function SplashScreen(props) {
           }).then(async res => {
             let currency = getCountry(res[0]?.country);
             let formattedCurrency = formatCurrency('', currency?.currency);
-            await AsyncStorage.setItem(
-              '@Currency',
-              JSON.stringify('true'),
-            );
+            await AsyncStorage.setItem('@Currency', JSON.stringify('true'));
             await AsyncStorage.setItem(
               '@City',
               JSON.stringify({
@@ -233,7 +236,7 @@ export default function SplashScreen(props) {
       //     routes: [{ name: 'NoLocation' }],
       //   }),
       // );
-      props.navigation.replace('Home', { crossIcon: false });
+      props.navigation.replace('Categories', { crossIcon: false });
     }
   };
   React.useEffect(() => {

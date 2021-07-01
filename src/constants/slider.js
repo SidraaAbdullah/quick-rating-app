@@ -1,7 +1,7 @@
 export const slider = [
   {
     id: '1',
-    title: 'Quick & Easy Payments',
+    title: 'Categories',
     description:
       'Grow your business by accepting card payments with the new card reader.',
     image: require('../assets/images/get-started/rating.png'),
@@ -9,7 +9,7 @@ export const slider = [
   },
   {
     id: '2',
-    title: 'Smart Point of Sale',
+    title: 'Booking',
     description:
       'Grow your business by accepting card payments with the new card reader.',
     lottie: require('../assets/lottie/booking.json'),
@@ -17,7 +17,7 @@ export const slider = [
   },
   {
     id: '3',
-    title: 'Instant Notification',
+    title: 'Review',
     description:
       'Grow your business by accepting card payments with the new card reader.',
     lottie: require('../assets/lottie/review.json'),
@@ -25,7 +25,7 @@ export const slider = [
   },
   {
     id: '4',
-    title: 'Customize Everything',
+    title: 'Tip',
     description:
       'Grow your business by accepting card payments with the new card reader.',
     lottie: require('../assets/lottie/tip.json'),
