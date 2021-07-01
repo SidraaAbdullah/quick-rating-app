@@ -10,7 +10,7 @@ import {
   ActivityIndicator,
   ScrollView,
 } from 'react-native';
-import Constants from 'expo-constants';
+// import Constants from 'expo-constants';
 import { FontAwesome } from '@expo/vector-icons';
 import { Colors } from '../../constants/Theme';
 import * as Google from 'expo-google-app-auth';
@@ -27,8 +27,8 @@ import * as Facebook from 'expo-facebook';
 import * as AppleAuthentication from 'expo-apple-authentication';
 import * as Device from 'expo-device';
 import { getAsyncStorageValues } from '../../constants';
-import * as Notifications from 'expo-notifications';
-import * as Localization from 'expo-localization';
+// import * as Notifications from 'expo-notifications';
+// import * as Localization from 'expo-localization';
 import { LinearGradient } from 'expo-linear-gradient';
 import LottieView from 'lottie-react-native';
 
@@ -39,72 +39,72 @@ const SocialLogin = ({ navigation, route }) => {
   const [vote, setVote] = useState(false);
   const [confirmWaiter, setconfirmWaiter] = useState(false);
   const [HelpUs, setHelpUs] = useState();
-  const [sendNotificationToken] = useMutation(SEND_PUSH_TOKEN);
+  // const [sendNotificationToken] = useMutation(SEND_PUSH_TOKEN);
   const { state, dispatch } = useContext(Context);
-  const notificationListener = useRef();
-  const responseListener = useRef();
-  Notifications.setNotificationHandler({
-    handleNotification: async () => ({
-      shouldShowAlert: true,
-      shouldPlaySound: true,
-      shouldSetBadge: false,
-    }),
-  });
+  // const notificationListener = useRef();
+  // const responseListener = useRef();
+  // Notifications.setNotificationHandler({
+  //   handleNotification: async () => ({
+  //     shouldShowAlert: true,
+  //     shouldPlaySound: true,
+  //     shouldSetBadge: false,
+  //   }),
+  // });
 
-  const registerForPushNotifications = async user_id => {
-    let token;
-    if (Constants.isDevice) {
-      const {
-        status: existingStatus,
-      } = await Notifications.getPermissionsAsync();
-      let finalStatus = existingStatus;
-      if (existingStatus !== 'granted') {
-        const { status } = await Notifications.requestPermissionsAsync();
-        finalStatus = status;
-      }
-      if (finalStatus !== 'granted') {
-        alert('Failed to get push token for push notification!');
-        return;
-      }
-      token = (await Notifications.getExpoPushTokenAsync()).data;
-    } else {
-      alert('Must use physical device for Push Notifications');
-    }
+  // const registerForPushNotifications = async user_id => {
+  //   let token;
+  //   if (Constants.isDevice) {
+  //     const {
+  //       status: existingStatus,
+  //     } = await Notifications.getPermissionsAsync();
+  //     let finalStatus = existingStatus;
+  //     if (existingStatus !== 'granted') {
+  //       const { status } = await Notifications.requestPermissionsAsync();
+  //       finalStatus = status;
+  //     }
+  //     if (finalStatus !== 'granted') {
+  //       alert('Failed to get push token for push notification!');
+  //       return;
+  //     }
+  //     token = (await Notifications.getExpoPushTokenAsync()).data;
+  //   } else {
+  //     alert('Must use physical device for Push Notifications');
+  //   }
 
-    if (Platform.OS === 'android') {
-      Notifications.setNotificationChannelAsync('default', {
-        name: 'default',
-        importance: Notifications.AndroidImportance.MAX,
-        vibrationPattern: [0, 250, 250, 250],
-        sound: true,
-      });
-    }
-    const { locale } = await Localization.getLocalizationAsync();
-    await sendNotificationToken(
-      {
-        id: user_id,
-        expo_notification_token: token,
-        lang: locale || '',
-      },
-      {
-        enabled: user_id ? true : false,
-      },
-    );
-    notificationListener.current = Notifications.addNotificationReceivedListener(
-      notification => {
-        navigation.navigate('WaiterProfile', {
-          crossIcon: true,
-        });
-      },
-    );
-    responseListener.current = Notifications.addNotificationResponseReceivedListener(
-      response => {
-        navigation.navigate('WaiterProfile', {
-          crossIcon: true,
-        });
-      },
-    );
-  };
+  //   if (Platform.OS === 'android') {
+  //     Notifications.setNotificationChannelAsync('default', {
+  //       name: 'default',
+  //       importance: Notifications.AndroidImportance.MAX,
+  //       vibrationPattern: [0, 250, 250, 250],
+  //       sound: true,
+  //     });
+  //   }
+  //   const { locale } = await Localization.getLocalizationAsync();
+  //   await sendNotificationToken(
+  //     {
+  //       id: user_id,
+  //       expo_notification_token: token,
+  //       lang: locale || '',
+  //     },
+  //     {
+  //       enabled: user_id ? true : false,
+  //     },
+  //   );
+  //   notificationListener.current = Notifications.addNotificationReceivedListener(
+  //     notification => {
+  //       navigation.navigate('WaiterProfile', {
+  //         crossIcon: true,
+  //       });
+  //     },
+  //   );
+  //   responseListener.current = Notifications.addNotificationResponseReceivedListener(
+  //     response => {
+  //       navigation.navigate('WaiterProfile', {
+  //         crossIcon: true,
+  //       });
+  //     },
+  //   );
+  // };
 
   useEffect(() => {
     setVote(route?.params?.vote ? route?.params?.vote : false);
@@ -169,7 +169,7 @@ const SocialLogin = ({ navigation, route }) => {
               ...userDetails,
             }),
           );
-          registerForPushNotifications(res?.user?._id);
+          // registerForPushNotifications(res?.user?._id);
           setLoading(false);
         },
         onError: error => {
@@ -255,7 +255,7 @@ const SocialLogin = ({ navigation, route }) => {
                     ...userDetails,
                   }),
                 );
-                registerForPushNotifications(res?.user?._id);
+                // registerForPushNotifications(res?.user?._id);
                 setLoading(false);
               },
               onError: e => {
@@ -414,7 +414,7 @@ const SocialLogin = ({ navigation, route }) => {
                               ...userDetails,
                             }),
                           );
-                          registerForPushNotifications(res?.user?._id);
+                          // registerForPushNotifications(res?.user?._id);
                           setLoading(false);
                         },
                         onError: e => {
