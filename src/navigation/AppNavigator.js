@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import splashScreen from '../screens/splashscreen';
@@ -26,12 +26,14 @@ import ManagerSignUp from '../screens/manager-signup';
 import ServerProfile from '../screens/server-profile';
 import NoAppTracking from '../screens/no-app-tracking';
 import GetStarted from '../screens/get-started';
+
 const Stack = createStackNavigator();
 
-function AppNavigator() {
+function AppNavigator({appVisited}) {
+
   return (
     <Stack.Navigator
-      initialRouteName="splashScreen"
+      initialRouteName= {appVisited ? "splashScreen" : "getStarted"}
       screenOptions={{ headerShown: false }}
     >
       <Stack.Screen

@@ -49,7 +49,7 @@ export default {
   personal_data: 'Personal data',
   // are_you_a_staff   open card reviews
   sign_out: 'Sign out',
-  i_waiter: 'I am staff',
+  i_waiter: 'Places where I work',
   i_manage: 'I manage a restaurant',
 
   // Social Login
@@ -88,7 +88,7 @@ export default {
   digital: 'Digital',
 
   //Global Header
-  must_loggedIn: 'You must be logged in to use Quick Rating!',
+  must_loggedIn: 'You must be open your wifi to access the app.',
   continue_with_apple: 'Continue with Apple',
   cannot_vote: 'You cannot vote yourself',
   already_waiter: 'You are already staff in this restaurant',

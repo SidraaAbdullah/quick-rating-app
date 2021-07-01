@@ -50,7 +50,7 @@ export default {
   personal_data: 'Données personnels',
   // are_you_a_waiter   open card reviews
   sign_out: 'Se déconnecter',
-  i_waiter: 'Je suis Personnel',
+  i_waiter: 'lieux où je travaille',
   i_manage: 'Je gère un restaurant',
 
   // Social Login

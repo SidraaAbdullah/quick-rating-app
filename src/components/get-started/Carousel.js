@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { FlatList, StyleSheet, Animated, View } from 'react-native';
 import { slider } from '../../constants/slider';
 import { CarouselItem, NextButton, Paginator } from './components';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Carousel = ({ navigation }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -14,11 +15,17 @@ const Carousel = ({ navigation }) => {
   const changeTo = index => {
     slidesRef.current.scrollToIndex({ index: index });
   };
-  const scrollTo = () => {
+  const scrollTo = async () => {
     if (currentIndex < slider.length - 1) {
       slidesRef.current.scrollToIndex({ index: currentIndex + 1 });
     } else {
-      navigation.replace('socialLogin', { crossIcon: false });
+      await AsyncStorage.setItem(
+        '@AppVisited',
+        JSON.stringify({
+          appVisited: true,
+        }),
+      );
+      navigation.replace('splashScreen');
     }
   };
   return (

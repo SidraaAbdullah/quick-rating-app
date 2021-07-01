@@ -21,7 +21,7 @@ const CarouselItem = ({ item }) => {
             {
               width: (width * 1) / 1.4,
               resizeMode: 'contain',
-              marginBottom: 100,
+              marginBottom: 70,
             },
           ]}
         />

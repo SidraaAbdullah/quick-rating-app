@@ -11,86 +11,86 @@ import * as actionTypes from '../../contextApi/actionTypes';
 var getCountry = require('country-currency-map').getCountry;
 var formatCurrency = require('country-currency-map').formatCurrency;
 import { loadAsync } from 'expo-font';
-import * as Notifications from 'expo-notifications';
-import { useMutation } from 'react-query';
-import { SEND_PUSH_TOKEN } from '../../queries';
-import Constants from 'expo-constants';
-import * as Localization from 'expo-localization';
+// import * as Notifications from 'expo-notifications';
+// import { useMutation } from 'react-query';
+// import { SEND_PUSH_TOKEN } from '../../queries';
+// import Constants from 'expo-constants';
+// import * as Localization from 'expo-localization';
 // import * as Device from 'expo-device';
 import { requestTrackingPermissionsAsync } from 'expo-tracking-transparency';
 
-Notifications.setNotificationHandler({
-  handleNotification: async () => ({
-    shouldShowAlert: true,
-    shouldPlaySound: true,
-    shouldSetBadge: false,
-  }),
-});
+// Notifications.setNotificationHandler({
+//   handleNotification: async () => ({
+//     shouldShowAlert: true,
+//     shouldPlaySound: true,
+//     shouldSetBadge: false,
+//   }),
+// });
 
 export default function SplashScreen(props) {
   const { dispatch } = useContext(Context);
-  const [sendNotificationToken] = useMutation(SEND_PUSH_TOKEN);
-  const notificationListener = useRef();
-  const responseListener = useRef();
+  // const [sendNotificationToken] = useMutation(SEND_PUSH_TOKEN);
+  // const notificationListener = useRef();
+  // const responseListener = useRef();
 
-  async function registerForPushNotificationsAsync() {
-    let token;
-    if (Constants.isDevice) {
-      const {
-        status: existingStatus,
-      } = await Notifications.getPermissionsAsync();
-      let finalStatus = existingStatus;
-      if (existingStatus !== 'granted') {
-        const { status } = await Notifications.requestPermissionsAsync();
-        finalStatus = status;
-      }
-      if (finalStatus !== 'granted') {
-        alert('Failed to get push token for push notification!');
-        return;
-      }
-      token = (await Notifications.getExpoPushTokenAsync()).data;
-    } else {
-      alert('Must use physical device for Push Notifications');
-    }
+  // async function registerForPushNotificationsAsync() {
+  //   let token;
+  //   if (Constants.isDevice) {
+  //     const {
+  //       status: existingStatus,
+  //     } = await Notifications.getPermissionsAsync();
+  //     let finalStatus = existingStatus;
+  //     if (existingStatus !== 'granted') {
+  //       const { status } = await Notifications.requestPermissionsAsync();
+  //       finalStatus = status;
+  //     }
+  //     if (finalStatus !== 'granted') {
+  //       alert('Failed to get push token for push notification!');
+  //       return;
+  //     }
+  //     token = (await Notifications.getExpoPushTokenAsync()).data;
+  //   } else {
+  //     alert('Must use physical device for Push Notifications');
+  //   }
 
-    if (Platform.OS === 'android') {
-      Notifications.setNotificationChannelAsync('default', {
-        name: 'default',
-        importance: Notifications.AndroidImportance.MAX,
-        vibrationPattern: [0, 250, 250, 250],
-        sound: true,
-      });
-    }
-    return token;
-  }
+  //   if (Platform.OS === 'android') {
+  //     Notifications.setNotificationChannelAsync('default', {
+  //       name: 'default',
+  //       importance: Notifications.AndroidImportance.MAX,
+  //       vibrationPattern: [0, 250, 250, 250],
+  //       sound: true,
+  //     });
+  //   }
+  //   return token;
+  // }
 
-  useEffect(() => {
-    registerForPushNotificationsAsync().then(async token => {
-      const { userInfo = {} } = await getAsyncStorageValues();
-      const { locale } = await Localization.getLocalizationAsync();
-      if (userInfo?.user_id) {
-        await sendNotificationToken({
-          id: userInfo?.user_id || '',
-          expo_notification_token: token || '',
-          lang: locale || '',
-        });
-        notificationListener.current = Notifications.addNotificationReceivedListener(
-          notification => {
-            props.navigation.navigate('WaiterProfile', {
-              crossIcon: true,
-            });
-          },
-        );
-        responseListener.current = Notifications.addNotificationResponseReceivedListener(
-          response => {
-            props.navigation.navigate('WaiterProfile', {
-              crossIcon: true,
-            });
-          },
-        );
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   registerForPushNotificationsAsync().then(async token => {
+  //     const { userInfo = {} } = await getAsyncStorageValues();
+  //     const { locale } = await Localization.getLocalizationAsync();
+  //     if (userInfo?.user_id) {
+  //       await sendNotificationToken({
+  //         id: userInfo?.user_id || '',
+  //         expo_notification_token: token || '',
+  //         lang: locale || '',
+  //       });
+  //       notificationListener.current = Notifications.addNotificationReceivedListener(
+  //         notification => {
+  //           props.navigation.navigate('WaiterProfile', {
+  //             crossIcon: true,
+  //           });
+  //         },
+  //       );
+  //       responseListener.current = Notifications.addNotificationResponseReceivedListener(
+  //         response => {
+  //           props.navigation.navigate('WaiterProfile', {
+  //             crossIcon: true,
+  //           });
+  //         },
+  //       );
+  //     }
+  //   });
+  // }, []);
 
   useEffect(() => {
     (async () => {
@@ -147,9 +147,9 @@ export default function SplashScreen(props) {
 
         NetInfo.fetch().then(state => {
           if (state.isConnected && userInfo?.user_id) {
-            props.navigation.replace('Home', { crossIcon: false });
+            props.navigation.replace('Home', { crossIcon: false, ad: true });
           } else if (state.isConnected && !userInfo?.user_id) {
-            props.navigation.navigate('getStarted');
+            props.navigation.replace('socialLogin');
           } else {
             props.navigation.replace('NoWiFi');
           }
@@ -190,9 +190,9 @@ export default function SplashScreen(props) {
         });
         NetInfo.fetch().then(state => {
           if (state.isConnected && userInfo?.user_id) {
-            props.navigation.replace('Home', { crossIcon: false });
+            props.navigation.replace('Home', { crossIcon: false, ad: true });
           } else if (state.isConnected && !userInfo?.user_id) {
-            props.navigation.navigate('getStarted');
+            props.navigation.replace('socialLogin');
           } else {
             props.navigation.replace('NoWiFi');
           }
@@ -215,9 +215,7 @@ export default function SplashScreen(props) {
             let formattedCurrency = formatCurrency('', currency?.currency);
             await AsyncStorage.setItem(
               '@Currency',
-              JSON.stringify({
-                currency: formattedCurrency || '',
-              }),
+              JSON.stringify('true'),
             );
             await AsyncStorage.setItem(
               '@City',

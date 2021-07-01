@@ -83,13 +83,6 @@ const ServerProfile = ({ navigation, route }) => {
               Data={yourRestaurantData?.restaurants?.results || []}
               saveLocation
             />
-            <View style={{ width: '90%', alignSelf: 'center', marginTop: 40 }}>
-              <CommonButton
-                title={i18n.t('ind_rest')}
-                navigation={'Home'}
-                navigationData={{ crossIcon: false }}
-              />
-            </View>
           </View>
         </ScrollView>
       </View>
