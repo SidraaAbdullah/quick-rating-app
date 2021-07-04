@@ -46,7 +46,7 @@
     "expo-web-browser": "~9.1.0",
     "i": "^0.3.6",
     "i18n-js": "^3.8.0",
-    "lottie-react-native": "3.5.0",
+    "lottie-react-native": "^3.5.0",
     "moment": "^2.29.1",
     "native-base": "^2.15.0",
     "npm": "^7.13.0",
