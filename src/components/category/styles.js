@@ -14,6 +14,14 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     backgroundColor: 'pink',
     borderRadius: 10,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.30,
+    shadowRadius: 4.65,
+    elevation: 8,
   },
   inner: {
     display: 'flex',
@@ -29,6 +37,6 @@ export const styles = StyleSheet.create({
   text: {
     fontWeight: 'normal',
     fontSize: 16,
-    letterSpacing: 1,
+    letterSpacing: 0.4,
   },
 });

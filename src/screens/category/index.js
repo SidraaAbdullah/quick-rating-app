@@ -9,6 +9,7 @@ import park from '../../assets/images/park.png';
 import cafe from '../../assets/images/cafe.png';
 import pharmacy from '../../assets/images/pharmacy.png';
 import supermarket from '../../assets/images/supermarket.png';
+import Header from './../../components/header/header'
 import saloon from '../../assets/images/salon.png';
 import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
 
@@ -80,6 +81,7 @@ const Boxes = props => {
   const { width } = useWindowDimensions();
   return (
     <ScrollView>
+      <Header/>
       <View style={styles.panel}>
         {lineOne.map(item => (
           <RenderCategory
@@ -102,11 +104,12 @@ const Boxes = props => {
 export const styles = StyleSheet.create({
   panel: {
     width: '100%',
-    // height:'100%'
+    height: '100%',
     flexWrap: 'wrap',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+    paddingBottom:65
   },
 });
 
