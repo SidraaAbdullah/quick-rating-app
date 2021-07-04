@@ -64,7 +64,7 @@ const ThanksRatingModal = ({ isVisible, handleModalClose, LotteryNumber }) => {
       <Text style={[styles.txtName, { fontFamily: 'ProximaNova' }]}>
         {i18n.t('will_contact_by_email')}
       </Text>
-      {LotteryNumber ? (
+      {/* {LotteryNumber ? (
         <NumberFormat
           value={pad(LotteryNumber, 8, '0')}
           allowEmptyFormatting
@@ -76,7 +76,7 @@ const ThanksRatingModal = ({ isVisible, handleModalClose, LotteryNumber }) => {
         />
       ) : (
         <Text style={styles.lottery}>XXXX-XXXX</Text>
-      )}
+      )} */}
     </Overlay>
   );
 };
