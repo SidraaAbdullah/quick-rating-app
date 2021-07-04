@@ -25,6 +25,7 @@
       "supportsTablet": true,
       "buildNumber": "1.0.0",
       "usesAppleSignIn": true,
+      "bundleIdentifier": "com.quickrating.rating",
       "infoPlist": {
         "NSLocationWhenInUseUsageDescription": "This app uses location for nearby restaurants",
         "NSLocationAlwaysAndWhenInUseUsageDescription": "This app uses location for nearby restaurants",
@@ -57,6 +58,7 @@
         "ACCESS_COARSE_LOCATION",
         "ACCESS_FINE_LOCATION"
       ],
+      "package": "com.quickrating.rating",
       "versionCode": 7
     },
     "web": {
