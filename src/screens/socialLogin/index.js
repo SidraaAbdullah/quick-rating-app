@@ -146,7 +146,7 @@ const SocialLogin = ({ navigation, route }) => {
           } else if (confirmWaiter || HelpUs) {
             navigation.navigate('OpenCardReviews');
           } else {
-            navigation.navigate('Home', { crossIcon: false });
+            navigation.navigate('Categories');
           }
           let userDetails = {
             name: res?.user?.full_name,
@@ -230,7 +230,7 @@ const SocialLogin = ({ navigation, route }) => {
                 } else if (confirmWaiter || HelpUs) {
                   navigation.navigate('OpenCardReviews');
                 } else {
-                  navigation.navigate('Home', { crossIcon: false });
+                  navigation.navigate('Categories');
                 }
                 let userDetails = {
                   name: res?.user?.full_name,
@@ -388,7 +388,7 @@ const SocialLogin = ({ navigation, route }) => {
                           } else if (confirmWaiter || HelpUs) {
                             navigation.navigate('OpenCardReviews');
                           } else {
-                            navigation.navigate('Home', { crossIcon: false });
+                            navigation.navigate('Categories');
                           }
                           let userDetails = {
                             name: res?.user?.full_name,

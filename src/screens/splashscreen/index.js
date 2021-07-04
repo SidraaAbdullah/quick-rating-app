@@ -136,7 +136,7 @@ export default function SplashScreen(props) {
         //     routes: [{ name: 'NoLocation' }],
         //   }),
         // );
-        props.navigation.replace('Categories', { crossIcon: false });
+        props.navigation.replace('Categories');
       }
 
       const isLocation = await Location.hasServicesEnabledAsync();
@@ -147,10 +147,7 @@ export default function SplashScreen(props) {
 
         NetInfo.fetch().then(state => {
           if (state.isConnected && userInfo?.user_id) {
-            props.navigation.replace('Categories', {
-              crossIcon: false,
-              ad: true,
-            });
+            props.navigation.replace('Categories');
           } else if (state.isConnected && !userInfo?.user_id) {
             props.navigation.replace('socialLogin');
           } else {
@@ -193,10 +190,7 @@ export default function SplashScreen(props) {
         });
         NetInfo.fetch().then(state => {
           if (state.isConnected && userInfo?.user_id) {
-            props.navigation.replace('Categories', {
-              crossIcon: false,
-              ad: true,
-            });
+            props.navigation.replace('Categories');
           } else if (state.isConnected && !userInfo?.user_id) {
             props.navigation.replace('socialLogin');
           } else {
