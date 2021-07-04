@@ -16,10 +16,12 @@ const apiUrl = () => {
     // expo build:android --release-channel production-1.0.0
     //  "ACCESS_COARSE_LOCATION",
     // "ACCESS_FINE_LOCATION"
-    api_url = 'ec2-54-169-90-101.ap-southeast-1.compute.amazonaws.com:8080/api';
+    api_url =
+      'http://ec2-54-169-90-101.ap-southeast-1.compute.amazonaws.com:8080/api';
   } else if (releaseEnvironment == 'staging') {
     // expo publish --release-channel production-1.0.0
-    api_url = 'ec2-54-169-90-101.ap-southeast-1.compute.amazonaws.com:8080/api';
+    api_url =
+      'http://ec2-54-169-90-101.ap-southeast-1.compute.amazonaws.com:8080/api';
   }
   return api_url;
 };
