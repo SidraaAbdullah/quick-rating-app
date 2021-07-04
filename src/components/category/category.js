@@ -3,8 +3,7 @@ import { Text, View, Image } from 'react-native';
 import { styles } from './styles';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import LottieView from 'lottie-react-native';
-import cafe from './../../assets/images/cafe.json'
-
+import cafe from './../../assets/images/cafe.json';
 
 const RenderCategory = props => {
   const {
@@ -16,6 +15,7 @@ const RenderCategory = props => {
     image,
     category,
     navigation,
+    lottie,
   } = props;
 
   return (
@@ -24,7 +24,7 @@ const RenderCategory = props => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        // backgroundColor:'blue',
+        // backgroundColor: 'blue',
         // marginBottom: 12,
         // backgroundColor: 'blue',
         // height: '200%',
@@ -47,19 +47,23 @@ const RenderCategory = props => {
           ]}
         >
           <View style={styles.inner}>
-            {/* <Image source={image} style={{ width: 70, height: 70 }} /> */}
-            <LottieView
-              source={require('../../assets/images/cafe.json')}
-              autoPlay
-              loop
-              style={[
-                {
-                  width: 70,
-                  resizeMode: 'contain',
-                  marginBottom: 70,
-                },
-              ]}
-            />
+            {lottie ? (
+              <LottieView
+                source={lottie}
+                autoPlay
+                loop
+                style={[
+                  {
+                    width: 120,
+                    height: 120,
+                    resizeMode: 'contain',
+                    // marginBottom: 70,
+                  },
+                ]}
+              />
+            ) : (
+              <Image source={image} style={{ width: 70, height: 70 }} />
+            )}
             <Text style={styles.title}>{title}</Text>
             <Text style={styles.text}>{text}</Text>
           </View>

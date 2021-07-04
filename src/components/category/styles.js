@@ -14,7 +14,6 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     backgroundColor: 'pink',
     borderRadius: 10,
-    
   },
   inner: {
     display: 'flex',

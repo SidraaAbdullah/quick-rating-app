@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Text, View, Image } from 'react-native';
+import { Text, View, Image, useWindowDimensions } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { StyleSheet } from 'react-native';
 import RenderCategory from './../../components/category/category';
@@ -16,65 +16,43 @@ const lineOne = [
   {
     title: 'Restaurants',
     text: 'order food you love',
-    heightt: 150,
-    widthh: 300,
-    color: '#d60e64',
+    color: '#c88ad8e5',
     image: restaurants,
     category: 'restaurant',
+    lottie: require('../../assets/lottie/restaurant.json'),
   },
-];
-
-const lineThree = [
-  {
-    title: 'Pharmacy',
-    text: 'get your medicines first',
-    heightt: 150,
-    widthh: 300,
-    color: '#ef9fc2',
-    category: 'pharmacy',
-    image: pharmacy,
-  },
-];
-
-const lineFive = [
-  {
-    title: 'Amusement Park',
-    text: 'Feel your life',
-    heightt: 150,
-    widthh: 300,
-    category: 'amusement_park',
-    color: '#CCFF99',
-    image: park,
-  },
-];
-
-const lineTwo = [
   {
     title: 'Gym',
     text: 'gym lover',
-    heightt: 150,
-    widthh: 150,
+    width: 2.4,
     color: '#fed271',
     category: 'gym',
     image: gym,
+    lottie: require('../../assets/lottie/gym.json'),
   },
   {
     title: 'cafe',
     text: 'order your coffee',
-    heightt: 150,
-    widthh: 150,
+    width: 2.4,
     color: '#FFE5CC',
     category: 'cafe',
     image: cafe,
+    lottie: require('../../assets/lottie/cafe.json'),
   },
-];
+  {
+    title: 'Pharmacy',
+    text: 'get your medicines first',
+    color: '#ef9fc2',
+    category: 'pharmacy',
+    lottie: require('../../assets/lottie/pharmacy.json'),
+    image: pharmacy,
+  },
 
-const lineFour = [
   {
     title: 'Barber Shop',
     text: "style's everything",
-    heightt: 150,
-    widthh: 150,
+    lottie: require('../../assets/lottie/beauty-parlour.json'),
+    width: 2.4,
     color: 'white',
     category: 'beauty_salon',
     image: saloon,
@@ -82,116 +60,54 @@ const lineFour = [
   {
     title: 'Supermarket',
     text: 'purchasing',
-    heightt: 150,
-    widthh: 150,
+    width: 2.4,
     color: '#85bfff',
+    lottie: require('../../assets/lottie/supermarket.json'),
     category: 'supermarket',
     image: supermarket,
+  },
+  {
+    title: 'Amusement Park',
+    text: 'Feel your life',
+    lottie: require('../../assets/lottie/park.json'),
+    category: 'amusement_park',
+    color: '#CCFF99',
+    image: park,
   },
 ];
 
 const Boxes = props => {
+  const { width } = useWindowDimensions();
   return (
     <ScrollView>
-          <View style={styles.panel}>
-      <FlatList
-        data={lineOne}
-        renderItem={({ item }) => (
+      <View style={styles.panel}>
+        {lineOne.map(item => (
           <RenderCategory
             title={item.title}
             text={item.text}
-            heightt={item.heightt}
-            widthh={item.widthh}
+            // heightt={item.heightt}
+            widthh={item.width ? (width * 1) / item.width : (width * 1) / 1.1}
             color={item.color}
             image={item.image}
             category={item.category}
             navigation={props.navigation}
+            lottie={item.lottie}
           />
-        )}
-        keyExtractor={item => item.color}
-      />
-      
-      <FlatList
-        data={lineTwo}
-        numColumns={2}
-        renderItem={({ item }) => (
-          <RenderCategory
-            title={item.title}
-            text={item.text}
-            heightt={item.heightt}
-            widthh={item.widthh}
-            color={item.color}
-            image={item.image}
-            category={item.category}
-            navigation={props.navigation}
-          />
-        )}
-        keyExtractor={item => item.color}
-      />
-      <FlatList
-        data={lineThree}
-        renderItem={({ item }) => (
-          <RenderCategory
-            title={item.title}
-            text={item.text}
-            heightt={item.heightt}
-            widthh={item.widthh}
-            color={item.color}
-            image={item.image}
-            category={item.category}
-            navigation={props.navigation}
-          />
-        )}
-        keyExtractor={item => item.color}
-      />
-
-<FlatList
-        data={lineFour}
-        numColumns={2}
-        renderItem={({ item }) => (
-          <RenderCategory
-            title={item.title}
-            text={item.text}
-            heightt={item.heightt}
-            widthh={item.widthh}
-            color={item.color}
-            image={item.image}
-            category={item.category}
-            navigation={props.navigation}
-          />
-        )}
-        keyExtractor={item => item.color}
-      />
-
-
-      <FlatList
-        data={lineFive}
-        renderItem={({ item }) => (
-          <RenderCategory
-            title={item.title}
-            text={item.text}
-            heightt={item.heightt}
-            widthh={item.widthh}
-            color={item.color}
-            image={item.image}
-            category={item.category}
-            navigation={props.navigation}
-          />
-        )}
-        keyExtractor={item => item.color}
-      />
-    </View>
+        ))}
+      </View>
     </ScrollView>
-
   );
 };
 
 export const styles = StyleSheet.create({
-  // panel: {
-  //   backgroundColor:'blue',
-  //   // height:'100%'
-   
-  // },
+  panel: {
+    width: '100%',
+    // height:'100%'
+    flexWrap: 'wrap',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });
 
 export default Boxes;
