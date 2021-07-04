@@ -23,7 +23,6 @@ const HomeScreen = props => {
       const { location } = await getAsyncStorageValues();
       setSaveLocation(location);
     })();
-    console.log(props.route.params.category);
   }, []);
 
   useEffect(() => {
