@@ -5,6 +5,7 @@ import { styles } from './style';
 const header = props => {
   return (<View style={styles.container}>
       <Text style={styles.text}>CHOOSE A CATEGORY</Text>
+
   </View>
   )
 };
