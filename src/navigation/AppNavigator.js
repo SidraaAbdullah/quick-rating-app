@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import splashScreen from '../screens/splashscreen';
 import socialLogin from '../screens/socialLogin';
 import Home from '../screens/home';
 
-import RateYourService from '../screens/rateYourService';
+//import RateYourService from '../screens/rateYourService';
 import Setting from '../screens/setting';
 import OpenCardReviews from '../screens/openCardReviews';
 import NoLocation from '../screens/NoLocationFound';
@@ -27,6 +27,7 @@ import ServerProfile from '../screens/server-profile';
 import NoAppTracking from '../screens/no-app-tracking';
 import GetStarted from '../screens/get-started';
 import Categories from '../screens/category';
+import PostReview from '../screens/post-review';
 
 const Stack = createStackNavigator();
 
@@ -36,6 +37,18 @@ function AppNavigator({ appVisited }) {
       initialRouteName={appVisited ? 'splashScreen' : 'getStarted'}
       screenOptions={{ headerShown: false }}
     >
+      <Stack.Screen
+        name="RateYourService"
+        component={PostReview}
+        options={() => ({
+          headerShown: true,
+          title: '',
+          headerLeft: null,
+          headerTransparent: true,
+          headerTitleAlign: 'left',
+          headerRightContainerStyle: { paddingRight: spacing(2) },
+        })}
+      />
       <Stack.Screen
         name="splashScreen"
         component={splashScreen}
@@ -96,7 +109,7 @@ function AppNavigator({ appVisited }) {
           headerRightContainerStyle: { paddingRight: spacing(2) },
         })}
       />
-      <Stack.Screen
+      {/* <Stack.Screen
         name="RateYourService"
         component={RateYourService}
         options={() => ({
@@ -107,7 +120,7 @@ function AppNavigator({ appVisited }) {
           headerTitleAlign: 'left',
           headerRightContainerStyle: { paddingRight: spacing(2) },
         })}
-      />
+      /> */}
       <Stack.Screen
         name="Setting"
         component={Setting}
