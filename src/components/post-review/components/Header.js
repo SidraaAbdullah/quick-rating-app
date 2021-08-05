@@ -12,19 +12,6 @@ const Header = () => {
       source={imgBg}
       resizeMode="stretch"
     >
-      <View style={styles.container}>
-        <View style={styles.header}>
-          <View>
-            <Text style={styles.headerHeading}>Cancel</Text>
-          </View>
-          <View>
-            <Text style={{ fontWeight: 'bold', fontSize: 18 }}>New Review</Text>
-          </View>
-          <View>
-            <Text style={styles.headerHeading}>Post</Text>
-          </View>
-        </View>
-      </View>
       <View>
         <View style={styles.image}>
           <FontAwesome name="user-circle-o" size={100} color="#fff" />
@@ -40,17 +27,6 @@ const styles = StyleSheet.create({
   container: {
     padding: 20,
     justifyContent: 'center',
-  },
-  header: {
-    paddingTop: 20,
-    flexDirection: 'row',
-    flexWrap: 'nowrap',
-    justifyContent: 'space-between',
-  },
-  headerHeading: {
-    color: 'gray',
-    fontSize: 18,
-    fontWeight: 'bold',
   },
   name: {
     alignSelf: 'center',

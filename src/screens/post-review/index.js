@@ -1,8 +1,7 @@
 import React from 'react';
-import Review from '../../components/post-review';
-import { useNavigation } from '@react-navigation/native';
-const PostReview = ({ route }) => {
-  const navigation = useNavigation();
-  return <Review navigation={navigation} route={route} />;
+import RestaurantReview from '../../components/post-review';
+
+const PostReview = () => {
+  return <RestaurantReview  />;
 };
 export default PostReview;

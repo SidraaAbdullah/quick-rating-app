@@ -5,7 +5,7 @@ import splashScreen from '../screens/splashscreen';
 import socialLogin from '../screens/socialLogin';
 import Home from '../screens/home';
 
-//import RateYourService from '../screens/rateYourService';
+import RateYourService from '../screens/rateYourService';
 import Setting from '../screens/setting';
 import OpenCardReviews from '../screens/openCardReviews';
 import NoLocation from '../screens/NoLocationFound';
@@ -27,7 +27,7 @@ import ServerProfile from '../screens/server-profile';
 import NoAppTracking from '../screens/no-app-tracking';
 import GetStarted from '../screens/get-started';
 import Categories from '../screens/category';
-import PostReview from '../screens/post-review';
+import postRestaurantReview from '../screens/post-review';
 
 const Stack = createStackNavigator();
 
@@ -38,8 +38,8 @@ function AppNavigator({ appVisited }) {
       screenOptions={{ headerShown: false }}
     >
       <Stack.Screen
-        name="RateYourService"
-        component={PostReview}
+        name="postRestaurantReview"
+        component={postRestaurantReview}
         options={() => ({
           headerShown: true,
           title: '',
@@ -109,7 +109,7 @@ function AppNavigator({ appVisited }) {
           headerRightContainerStyle: { paddingRight: spacing(2) },
         })}
       />
-      {/* <Stack.Screen
+      <Stack.Screen
         name="RateYourService"
         component={RateYourService}
         options={() => ({
@@ -120,7 +120,7 @@ function AppNavigator({ appVisited }) {
           headerTitleAlign: 'left',
           headerRightContainerStyle: { paddingRight: spacing(2) },
         })}
-      /> */}
+      />
       <Stack.Screen
         name="Setting"
         component={Setting}
