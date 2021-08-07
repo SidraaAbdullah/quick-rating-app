@@ -451,6 +451,29 @@ const ReviewDetails = ({ navigation, route }) => {
           </TouchableOpacity>
         </View>
 
+        {/* RestaurantRating */}
+
+        <TouchableOpacity
+          activeOpacity={0.5}
+          onPress={() =>
+            navigation.navigate('restaurantReview', {
+              img,
+              name,
+            })
+          }
+          style={styles.viewLastBtn}
+        >
+          <Text
+            style={{
+              fontFamily: 'ProximaNova',
+              fontSize: 16,
+              color: Colors.fontDark,
+            }}
+          >
+            Rate Me Here
+          </Text>
+        </TouchableOpacity>
+
         <View
           style={{
             flexDirection: 'row',
@@ -588,47 +611,48 @@ const ReviewDetails = ({ navigation, route }) => {
             </TouchableOpacity>
           </View>
         </View>
+        <TouchableOpacity
+          activeOpacity={0.5}
+          disabled={RestaurantDetails?.data?.menu_url ? false : true}
+          onPress={() => {
+            if (RestaurantDetails?.data?.menu_url) {
+              WebBrowser.openBrowserAsync(RestaurantDetails?.data?.menu_url);
+            }
+          }}
+          style={[
+            styles.viewLastBtn,
+            { marginBottom: 10 },
+            !RestaurantDetails?.data?.menu_url && {
+              backgroundColor: '#f0f0f0',
+            },
+          ]}
+        >
+          <Text
+            style={{
+              fontFamily: 'ProximaNova',
+              fontSize: 16,
+              color: Colors.fontDark,
+            }}
+          >
+            {i18n.t('see_the_menu')}
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          activeOpacity={0.5}
+          onPress={handleUserModalOpen}
+          style={styles.viewLastBtn}
+        >
+          <Text
+            style={{
+              fontFamily: 'ProximaNova',
+              fontSize: 16,
+              color: Colors.fontDark,
+            }}
+          >
+            {i18n.t('are_you_waiter')}
+          </Text>
+        </TouchableOpacity>
       </ScrollView>
-      <TouchableOpacity
-        activeOpacity={0.5}
-        disabled={RestaurantDetails?.data?.menu_url ? false : true}
-        onPress={() => {
-          if (RestaurantDetails?.data?.menu_url) {
-            WebBrowser.openBrowserAsync(RestaurantDetails?.data?.menu_url);
-          }
-        }}
-        style={[
-          styles.viewLastBtn,
-          { marginBottom: 10 },
-          !RestaurantDetails?.data?.menu_url && { backgroundColor: '#f0f0f0' },
-        ]}
-      >
-        <Text
-          style={{
-            fontFamily: 'ProximaNova',
-            fontSize: 16,
-            color: Colors.fontDark,
-          }}
-        >
-          {i18n.t('see_the_menu')}
-        </Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        activeOpacity={0.5}
-        onPress={handleUserModalOpen}
-        style={styles.viewLastBtn}
-      >
-        <Text
-          style={{
-            fontFamily: 'ProximaNova',
-            fontSize: 16,
-            color: Colors.fontDark,
-          }}
-        >
-          {i18n.t('are_you_waiter')}
-        </Text>
-      </TouchableOpacity> 
-
       {RefferedWaiterModalVisible && (
         <RefferedWaiterModal
           isVisible={RefferedWaiterModalVisible}

@@ -4,7 +4,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import splashScreen from '../screens/splashscreen';
 import socialLogin from '../screens/socialLogin';
 import Home from '../screens/home';
-
 import RateYourService from '../screens/rateYourService';
 import Setting from '../screens/setting';
 import OpenCardReviews from '../screens/openCardReviews';
@@ -27,7 +26,7 @@ import ServerProfile from '../screens/server-profile';
 import NoAppTracking from '../screens/no-app-tracking';
 import GetStarted from '../screens/get-started';
 import Categories from '../screens/category';
-import postRestaurantReview from '../screens/post-review';
+import RestaurantReview from '../screens/restaurant-review';
 
 const Stack = createStackNavigator();
 
@@ -37,18 +36,6 @@ function AppNavigator({ appVisited }) {
       initialRouteName={appVisited ? 'splashScreen' : 'getStarted'}
       screenOptions={{ headerShown: false }}
     >
-      <Stack.Screen
-        name="postRestaurantReview"
-        component={postRestaurantReview}
-        options={() => ({
-          headerShown: true,
-          title: '',
-          headerLeft: null,
-          headerTransparent: true,
-          headerTitleAlign: 'left',
-          headerRightContainerStyle: { paddingRight: spacing(2) },
-        })}
-      />
       <Stack.Screen
         name="splashScreen"
         component={splashScreen}
@@ -136,6 +123,18 @@ function AppNavigator({ appVisited }) {
       <Stack.Screen
         name="OpenCardReviews"
         component={OpenCardReviews}
+        options={() => ({
+          headerShown: true,
+          title: '',
+          headerLeft: null,
+          headerTransparent: true,
+          headerTitleAlign: 'left',
+          headerRightContainerStyle: { paddingRight: spacing(2) },
+        })}
+      />
+      <Stack.Screen
+        name="restaurantReview"
+        component={RestaurantReview}
         options={() => ({
           headerShown: true,
           title: '',

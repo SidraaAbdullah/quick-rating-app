@@ -19,7 +19,7 @@ const Review = () => {
 };
 const styles = StyleSheet.create({
   rating: {
-    paddingTop: 5,
+    paddingTop: 15,
     justifyContent: 'center',
     alignItems: 'center',
   },
