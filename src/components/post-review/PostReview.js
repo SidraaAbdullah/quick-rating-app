@@ -1,4 +1,5 @@
 /* eslint-disable indent */
+import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import {
   StyleSheet,
@@ -7,23 +8,56 @@ import {
   TouchableOpacity,
   Text,
   Platform,
+  Dimensions,
+  ImageBackground,
 } from 'react-native';
 import { Colors } from '../../constants/Theme';
+import GlobalHeader from '../GlobalHeader';
 import { Header, Review, Rating } from './components';
+const imgBg = require('../../assets/images/Group5.png');
+
 const PostReview = ({ navigation, route }) => {
+  const { img } = route.params;
   return (
-    <ScrollView>
-      <View style={styles.viewProfile}>
-        <Header navigation={navigation} route={route} />
-      </View>
-      <View style={styles.container}>
-        <Rating />
-        <Review />
-      </View>
-      <TouchableOpacity
-        activeOpacity={0.5}
-        style={styles.viewLastBtn}
+    <View style={{ flex: 1 }}>
+      <StatusBar translucent={true} style="dark" />
+      <ImageBackground
+        style={{
+          width: '100%',
+          height: 120,
+        }}
+        source={imgBg}
+        resizeMode="stretch"
       >
+        <GlobalHeader
+          arrow={true}
+          headingText="Restaurant review"
+          fontSize={17}
+          color={'black'}
+          bold={true}
+          BackIconColor={'black'}
+          backgroundColor={'transparent'}
+          position="absolute"
+          navigation={navigation}
+        />
+      </ImageBackground>
+      <ScrollView>
+        <View style={styles.viewImg}>
+          <ImageBackground
+            source={{
+              uri:
+                img ||
+                'https://images.pexels.com/photos/6267/menu-restaurant-vintage-table.jpg?auto=compress&cs=tinysrgb&dpr=1&w=400',
+            }}
+            style={{ flex: 1, justifyContent: 'space-between' }}
+          ></ImageBackground>
+        </View>
+        <View style={styles.container}>
+          <Rating />
+          <Review />
+        </View>
+      </ScrollView>
+      <TouchableOpacity activeOpacity={0.5} style={styles.viewLastBtn}>
         <Text
           style={{
             fontFamily: 'ProximaNova',
@@ -34,7 +68,7 @@ const PostReview = ({ navigation, route }) => {
           Submit
         </Text>
       </TouchableOpacity>
-    </ScrollView>
+    </View>
   );
 };
 const styles = StyleSheet.create({
@@ -60,6 +94,16 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 40,
     borderBottomRightRadius: 40,
     paddingTop: 0,
+  },
+  viewImg: {
+    width: '100%',
+    height: 250,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
+    // borderTopRightRadius: 20,
+    // borderTopLeftRadius: 20,
+
+    overflow: 'hidden',
   },
 });
 export default PostReview;

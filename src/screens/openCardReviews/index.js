@@ -47,6 +47,7 @@ import i18n from '../../li8n';
 // import { filteredRestaurant, yourFilteredRestaurant } from '../../util';
 import Spinner from 'react-native-loading-spinner-overlay';
 // import { set } from 'react-native-reanimated';
+import { styles, TopCard } from '../../components/restaurant-screen';
 
 const ReviewDetails = ({ navigation, route }) => {
   const openDialScreen = () => {
@@ -449,30 +450,16 @@ const ReviewDetails = ({ navigation, route }) => {
               </View>
             </View>
           </TouchableOpacity>
+          <TopCard
+            name="Rate us"
+            onPress={() =>
+              navigation.navigate('restaurantReview', {
+                img,
+                name,
+              })
+            }
+          />
         </View>
-
-        {/* RestaurantRating */}
-
-        <TouchableOpacity
-          activeOpacity={0.5}
-          onPress={() =>
-            navigation.navigate('restaurantReview', {
-              img,
-              name,
-            })
-          }
-          style={styles.viewLastBtn}
-        >
-          <Text
-            style={{
-              fontFamily: 'ProximaNova',
-              fontSize: 16,
-              color: Colors.fontDark,
-            }}
-          >
-            Rate Me Here
-          </Text>
-        </TouchableOpacity>
 
         <View
           style={{
@@ -611,48 +598,49 @@ const ReviewDetails = ({ navigation, route }) => {
             </TouchableOpacity>
           </View>
         </View>
-        <TouchableOpacity
-          activeOpacity={0.5}
-          disabled={RestaurantDetails?.data?.menu_url ? false : true}
-          onPress={() => {
-            if (RestaurantDetails?.data?.menu_url) {
-              WebBrowser.openBrowserAsync(RestaurantDetails?.data?.menu_url);
-            }
-          }}
-          style={[
-            styles.viewLastBtn,
-            { marginBottom: 10 },
-            !RestaurantDetails?.data?.menu_url && {
-              backgroundColor: '#f0f0f0',
-            },
-          ]}
-        >
-          <Text
-            style={{
-              fontFamily: 'ProximaNova',
-              fontSize: 16,
-              color: Colors.fontDark,
-            }}
-          >
-            {i18n.t('see_the_menu')}
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          activeOpacity={0.5}
-          onPress={handleUserModalOpen}
-          style={styles.viewLastBtn}
-        >
-          <Text
-            style={{
-              fontFamily: 'ProximaNova',
-              fontSize: 16,
-              color: Colors.fontDark,
-            }}
-          >
-            {i18n.t('are_you_waiter')}
-          </Text>
-        </TouchableOpacity>
       </ScrollView>
+      <TouchableOpacity
+        activeOpacity={0.5}
+        disabled={RestaurantDetails?.data?.menu_url ? false : true}
+        onPress={() => {
+          if (RestaurantDetails?.data?.menu_url) {
+            WebBrowser.openBrowserAsync(RestaurantDetails?.data?.menu_url);
+          }
+        }}
+        style={[
+          styles.viewLastBtn,
+          { marginBottom: 10 },
+          !RestaurantDetails?.data?.menu_url && {
+            backgroundColor: '#f0f0f0',
+          },
+        ]}
+      >
+        <Text
+          style={{
+            fontFamily: 'ProximaNova',
+            fontSize: 16,
+            color: Colors.fontDark,
+          }}
+        >
+          {i18n.t('see_the_menu')}
+        </Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        activeOpacity={0.5}
+        onPress={handleUserModalOpen}
+        style={styles.viewLastBtn}
+      >
+        <Text
+          style={{
+            fontFamily: 'ProximaNova',
+            fontSize: 16,
+            color: Colors.fontDark,
+          }}
+        >
+          {i18n.t('are_you_waiter')}
+        </Text>
+      </TouchableOpacity>
+
       {RefferedWaiterModalVisible && (
         <RefferedWaiterModal
           isVisible={RefferedWaiterModalVisible}
@@ -698,166 +686,3 @@ const ReviewDetails = ({ navigation, route }) => {
   );
 };
 export default ReviewDetails;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#f9f9f9',
-  },
-  txtItemName: {
-    fontFamily: 'ProximaNova',
-    fontSize: 17,
-    letterSpacing: 0,
-    lineHeight: 24,
-    width: 180,
-  },
-  btnAdd: {
-    backgroundColor: Colors.yellow,
-    padding: 4,
-    borderRadius: 6,
-    marginLeft: 10,
-  },
-  txtAddReview: {
-    fontSize: 16,
-    color: Colors.fontDark,
-  },
-  txtCantFind: {
-    fontSize: 16,
-    color: Colors.fontLight,
-  },
-  viewAddReview: {
-    width: '90%',
-    alignSelf: 'center',
-    marginBottom: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 10,
-    paddingVertical: 15,
-    borderWidth: 1,
-    borderStyle: 'dashed',
-    borderColor: '#DADADA',
-  },
-  viewLastBtn: {
-    width: '90%',
-    alignSelf: 'center',
-    backgroundColor: Colors.yellow,
-    height: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 10,
-    marginBottom: Platform.OS === 'ios' ? 25 : 15,
-    marginTop: 1,
-  },
-  txtNumRaters: {
-    // backgroundColor: Colors.yellow, paddingVertical: 3, paddingHorizontal: 9,
-    // marginLeft: 10,
-    fontSize: 18,
-    //  borderRadius: 15
-  },
-  viewNumRaters: {
-    backgroundColor: Colors.yellow,
-    marginLeft: 23,
-    borderRadius: 9,
-    // paddingHorizontal:8,
-    paddingTop: 1,
-    paddingLeft: 7,
-    paddingRight: 8,
-    width: 'auto',
-    height: 25,
-    paddingVertical: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  txtHeading: {
-    alignSelf: 'center',
-    fontSize: 24,
-    lineHeight: 32,
-  },
-  viewHeader: {
-    flexDirection: 'row',
-    marginTop: 30,
-    paddingHorizontal: 10,
-  },
-  viewBottom: {
-    // top: 125,
-    flexDirection: 'row',
-    marginBottom: 10,
-    justifyContent: 'space-between',
-    paddingHorizontal: 20,
-    alignItems: 'flex-end',
-    bottom: 0,
-    position: 'absolute',
-    width: '100%',
-  },
-  txtName: {
-    textAlign: 'center',
-    marginLeft: -25,
-    color: '#fff',
-    fontSize: 20,
-  },
-  viewImg: {
-    width: '100%',
-    height: 200,
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
-    overflow: 'hidden',
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-  },
-  viewItemConatier: {
-    width: '90%',
-    backgroundColor: '#fff',
-    alignSelf: 'center',
-    height: 80,
-    marginVertical: 10,
-    borderRadius: 10,
-    alignItems: 'center',
-    flexDirection: 'row',
-    paddingHorizontal: 15,
-    justifyContent: 'space-between',
-  },
-  no_waiter_found: {
-    fontSize: 16,
-    color: Colors.fontLight,
-    width: '91.8%',
-    alignSelf: 'center',
-    marginTop: 7,
-    marginBottom: 25,
-  },
-  viewIcon: {
-    width: 30,
-    height: 30,
-    // backgroundColor: '#FFF6D4',
-    borderRadius: 5,
-    marginRight: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  viewIcon2: {
-    width: 30,
-    height: 30,
-    borderRadius: 5,
-    marginRight: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  viewBtnConatiner: {
-    width: '90%',
-    alignSelf: 'center',
-    borderRadius: 15,
-    marginTop: -45,
-    overflow: 'hidden',
-    backgroundColor: 'transparent',
-  },
-  viewItem: {
-    width: '100%',
-    height: 55,
-    backgroundColor: '#fff',
-    marginBottom: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: 10,
-  },
-});
