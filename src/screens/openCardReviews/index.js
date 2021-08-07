@@ -71,7 +71,7 @@ const ReviewDetails = ({ navigation, route }) => {
   const [refferedThanksModalVisible, setRefferedThanksModalVisible] = useState(
     false,
   );
-  const { state, dispatch } = useContext(Context);
+  const { state } = useContext(Context);
   const [IAMWAITER] = useMutation(I_AM_WAITER);
   const [AddWaiters] = useMutation(ADDING_WAITERS);
   const [Refferedloading, setRefferedLoading] = useState(false);
@@ -89,26 +89,6 @@ const ReviewDetails = ({ navigation, route }) => {
     restaurant_id,
     geometry,
   } = route?.params;
-  // const updateRestaurants = (state, placeId) => {
-  //   let FilteredRestaurant = filteredRestaurant(state, placeId);
-  //   dispatch({
-  //     type: actionTypes.RESTAURANTS_DETAILS,
-  //     payload: FilteredRestaurant,
-  //   });
-  // };
-
-  // const updateRestaurants_AddWaiter = (state, placeId) => {
-  //   let FilteredRestaurant = filteredRestaurant(state, placeId);
-  //   dispatch({
-  //     type: actionTypes.RESTAURANTS_DETAILS,
-  //     payload: FilteredRestaurant,
-  //   });
-  //   let YourFilteredRestaurant = yourFilteredRestaurant(state, placeId);
-  //   dispatch({
-  //     type: actionTypes.YOUR_RESTAURANTS,
-  //     payload: YourFilteredRestaurant,
-  //   });
-  // };
 
   const {
     data: waitersData,
@@ -170,24 +150,24 @@ const ReviewDetails = ({ navigation, route }) => {
       setUserWaiterModalVisible(true);
     }
   };
-
+  const restaurant = {
+    place_id: place_id,
+    rating: rating,
+    photos: [img],
+    name: name,
+    formatted_address: vicinity,
+    our_rating: String(our_rating),
+    location: geometry,
+    international_phone_number:
+      RestaurantDetails?.data?.international_phone_number,
+  };
   const handleAddWaiter = async (fullName, email) => {
     if (state.userDetails.user_id) {
       setRefferedLoading(true);
       let newWaiter = {
         created_by: state.userDetails.user_id,
         full_name: fullName,
-        restaurant: {
-          place_id: place_id,
-          rating: rating,
-          photos: [img],
-          name: name,
-          formatted_address: vicinity,
-          our_rating: String(our_rating),
-          location: geometry,
-          international_phone_number:
-            RestaurantDetails?.data?.international_phone_number,
-        },
+        restaurant,
         email: email,
       };
       // updateRestaurants_AddWaiter(state, place_id);
@@ -215,17 +195,7 @@ const ReviewDetails = ({ navigation, route }) => {
       setUserLoading(true);
       let IWaiter = {
         user_id: state.userDetails.user_id,
-        restaurant: {
-          place_id: place_id,
-          rating: rating,
-          photos: [img],
-          name: name,
-          formatted_address: vicinity,
-          our_rating: String(our_rating),
-          location: geometry,
-          international_phone_number:
-            RestaurantDetails?.data?.international_phone_number,
-        },
+        restaurant,
         // company_name: companyName,
         // business_registration_number: businessRegNumber,
         // manager_name: bossName,
@@ -456,6 +426,7 @@ const ReviewDetails = ({ navigation, route }) => {
               navigation.navigate('restaurantReview', {
                 img,
                 name,
+                restaurant,
               })
             }
           />

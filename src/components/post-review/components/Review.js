@@ -2,7 +2,7 @@
 import React from 'react';
 import { StyleSheet, TextInput, Text, View } from 'react-native';
 
-const Review = () => {
+const Review = ({ setComment, comment }) => {
   return (
     <View style={styles.rating}>
       <Text style={{ fontWeight: 'bold', fontSize: 18 }}>Review</Text>
@@ -12,6 +12,10 @@ const Review = () => {
           placeholder={'Write your experience...'}
           placeholderTextColor={'gray'}
           numberOfLines={5}
+          onChangeText={e => {
+            setComment(e);
+          }}
+          value={comment}
         />
       </View>
     </View>

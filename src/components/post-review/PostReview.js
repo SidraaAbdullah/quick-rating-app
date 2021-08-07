@@ -1,6 +1,6 @@
 /* eslint-disable indent */
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import {
   StyleSheet,
   View,
@@ -8,30 +8,37 @@ import {
   TouchableOpacity,
   Text,
   Platform,
-  Dimensions,
   ImageBackground,
 } from 'react-native';
+import { useMutation } from 'react-query';
 import { Colors } from '../../constants/Theme';
+import Context from '../../contextApi/context';
 import GlobalHeader from '../GlobalHeader';
-import { Header, Review, Rating } from './components';
+import { Review, Rating } from './components';
+import { POST_REVIEW } from './queries';
 const imgBg = require('../../assets/images/Group5.png');
 
 const PostReview = ({ navigation, route }) => {
-  const { img } = route.params;
+  const { state } = useContext(Context);
+
+  const { img, name, restaurant } = route.params;
+  const [rating, setRating] = useState();
+  const [comment, setComment] = useState('');
+  const [postReview] = useMutation(POST_REVIEW);
   return (
     <View style={{ flex: 1 }}>
       <StatusBar translucent={true} style="dark" />
       <ImageBackground
         style={{
           width: '100%',
-          height: 120,
+          height: 110,
         }}
         source={imgBg}
         resizeMode="stretch"
       >
         <GlobalHeader
           arrow={true}
-          headingText="Restaurant review"
+          headingText={`${name} review`}
           fontSize={17}
           color={'black'}
           bold={true}
@@ -53,20 +60,33 @@ const PostReview = ({ navigation, route }) => {
           ></ImageBackground>
         </View>
         <View style={styles.container}>
-          <Rating />
-          <Review />
+          <Rating rating={rating} setRating={setRating} />
+          <Review comment={comment} setComment={setComment} />
         </View>
       </ScrollView>
-      <TouchableOpacity activeOpacity={0.5} style={styles.viewLastBtn}>
-        <Text
-          style={{
-            fontFamily: 'ProximaNova',
-            fontSize: 16,
-            color: Colors.fontDark,
-          }}
-        >
-          Submit
-        </Text>
+      <TouchableOpacity
+        activeOpacity={0.5}
+        style={styles.viewLastBtn}
+        onPress={() => {
+          postReview(
+            {
+              comment,
+              rating,
+              user_id: state.userDetails.user_id,
+              place: restaurant,
+            },
+            {
+              onSuccess: () => {
+                navigation.goBack(null);
+              },
+              onError: err => {
+                alert(err);
+              },
+            },
+          );
+        }}
+      >
+        <Text style={styles.submitButton}>Submit</Text>
       </TouchableOpacity>
     </View>
   );
@@ -100,10 +120,12 @@ const styles = StyleSheet.create({
     height: 250,
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
-    // borderTopRightRadius: 20,
-    // borderTopLeftRadius: 20,
-
     overflow: 'hidden',
+  },
+  submitButton: {
+    fontFamily: 'ProximaNova',
+    fontSize: 16,
+    color: Colors.fontDark,
   },
 });
 export default PostReview;

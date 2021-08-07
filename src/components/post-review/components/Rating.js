@@ -1,10 +1,9 @@
 /* eslint-disable indent */
-import React, { useState } from 'react';
+import React from 'react';
 import { StyleSheet, TouchableOpacity, Text, View } from 'react-native';
 import RatingStar from '../../../components/RatingComponent';
 
-const Rating = () => {
-  const [rating, setRating] = useState();
+const Rating = ({ setRating, rating }) => {
   const obj = [1, 2, 3, 4, 5];
 
   return (
