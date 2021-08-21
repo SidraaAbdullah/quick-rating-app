@@ -51,13 +51,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   ratingBox: {
-    shadowColor: 'rgba(0,0,0,0.2)',
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 2,
-    shadowRadius: 2,
     elevation: 3,
     backgroundColor: 'white',
     borderRadius: 8,

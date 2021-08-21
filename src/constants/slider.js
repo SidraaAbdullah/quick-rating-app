@@ -32,3 +32,32 @@ export const slider = [
     image: require('../assets/images/get-started/rating.png'),
   },
 ];
+
+export const reviewSlider = [
+  {
+    id: '1',
+    description:
+      'Grow your business by accepting card payments. Grow your business by accepting card payments with the new card reader. Grow your business by accepting card payments with the new card reader.',
+    isGoogle: true,
+    image: require('../assets/images/google.png'),
+  },
+  {
+    id: '2',
+    description:
+      'Grow your business by accepting card payments with the new card reader.',
+    isGoogle: false,
+  },
+  {
+    id: '3',
+    description:
+      'Grow your business by accepting card payments with the new card reader.',
+    isGoogle: false,
+  },
+  {
+    id: '4',
+    description:
+      'Grow your business by accepting card payments with the new card reader.',
+    isGoogle: true,
+    image: require('../assets/images/google.png'),
+  },
+];

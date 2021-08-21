@@ -35,13 +35,6 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
     backgroundColor: 'white',
-    shadowColor: 'rgba(0,0,0,0.2)',
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 2,
-    shadowRadius: 2,
     elevation: 3,
   },
   TextInput: {
