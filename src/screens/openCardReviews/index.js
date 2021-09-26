@@ -231,7 +231,11 @@ const ReviewDetails = ({ navigation, route }) => {
           !waitersLoading
         }
       />
-      <HeaderImage  translateY={translateY} navigation={navigation} route={route} />
+      <HeaderImage
+        translateY={translateY}
+        navigation={navigation}
+        route={route}
+      />
 
       <ScrollView
         onScroll={e => {
@@ -332,20 +336,24 @@ const ReviewDetails = ({ navigation, route }) => {
               </View>
             </View>
           </TouchableOpacity>
-          <TopCard
-            name="Rate us"
-            onPress={() =>
-              navigation.navigate('restaurantReview', {
-                img,
-                name,
-                restaurant,
-              })
-            }
-          />
         </View>
 
-        <Review route={route} navigation={navigation} />
-        <Staff handleRefferedModalOpen={handleRefferedModalOpen} route={route} waitersLoading={waitersLoading} waitersIsFetching={waitersIsFetching}  data={data} navigation={navigation} />
+        <Review
+          route={route}
+          navigation={navigation}
+          restaurant={restaurant}
+          img={img}
+          name={name}
+          rating={rating}
+        />
+        <Staff
+          handleRefferedModalOpen={handleRefferedModalOpen}
+          route={route}
+          waitersLoading={waitersLoading}
+          waitersIsFetching={waitersIsFetching}
+          data={data}
+          navigation={navigation}
+        />
       </ScrollView>
 
       <TouchableOpacity
