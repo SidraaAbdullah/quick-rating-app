@@ -5,14 +5,9 @@ import { View, Text, FlatList, TouchableOpacity } from 'react-native';
 import { styles } from './index';
 import { Colors } from '../../constants/Theme';
 import { ReviewSlider } from './index';
+import Spinner from 'react-native-loading-spinner-overlay';
 
-const Review = ({
-  navigation,
-  img,
-  name,
-  restaurant,
-  reviewData,
-}) => {
+const Review = ({ navigation, img, name, loading, restaurant, reviewData }) => {
   return (
     <View>
       <View
@@ -40,6 +35,7 @@ const Review = ({
         </TouchableOpacity>
       </View>
       <View style={{ marginHorizontal: 15, marginVertical: 10 }}>
+        <Spinner visible={loading} />
         <FlatList
           data={reviewData?.data || []}
           renderItem={({ item }) => (

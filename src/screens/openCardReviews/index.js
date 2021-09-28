@@ -363,6 +363,7 @@ const ReviewDetails = ({ navigation, route }) => {
 
         <Review
           route={route}
+          loading={reviewDataLoading}
           navigation={navigation}
           restaurant={restaurant}
           img={img}
