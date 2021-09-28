@@ -10,3 +10,4 @@ export * from './search-res';
 export * from './manager-signIn';
 export * from './managers';
 export * from './update-user';
+export * from './review';
