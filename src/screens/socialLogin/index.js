@@ -156,6 +156,8 @@ const SocialLogin = ({ navigation, route }) => {
             email: res?.user?.email || '',
             accessToken: accessToken || '',
             user_id: res?.user?._id || '',
+            last_name: res?.user?.last_name || '',
+            phone_number: res?.user?.phone_number || '',
             os,
           };
           dispatch({
@@ -240,6 +242,8 @@ const SocialLogin = ({ navigation, route }) => {
                   email: res?.user?.email || '',
                   accessToken: token || '',
                   user_id: res?.user?._id || '',
+                  last_name: res?.user?.last_name || '',
+                  phone_number: res?.user?.phone_number || '',
                 };
 
                 dispatch({
@@ -288,11 +292,8 @@ const SocialLogin = ({ navigation, route }) => {
         alwaysBounceHorizontal={false}
         alwaysBounceVertical={false}
         bounces={false}
-        contentContainerStyle={[
-          styles.container,
-        ]}
+        contentContainerStyle={[styles.container]}
       >
-
         {loading ? (
           <ActivityIndicator size={70} color={Colors.yellow} />
         ) : (
@@ -363,7 +364,8 @@ const SocialLogin = ({ navigation, route }) => {
                     try {
                       const credential = await AppleAuthentication.signInAsync({
                         requestedScopes: [
-                          AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
+                          AppleAuthentication.AppleAuthenticationScope
+                            .FULL_NAME,
                           AppleAuthentication.AppleAuthenticationScope.EMAIL,
                         ],
                       });
