@@ -9,6 +9,7 @@ import {
   Text,
   Platform,
   ImageBackground,
+  Dimensions,
 } from 'react-native';
 import { useMutation } from 'react-query';
 import { Colors } from '../../constants/Theme';
@@ -16,49 +17,44 @@ import Context from '../../contextApi/context';
 import GlobalHeader from '../GlobalHeader';
 import { Review, Rating } from './components';
 import { POST_REVIEW } from './queries';
-const imgBg = require('../../assets/images/Group5.png');
 
 const PostReview = ({ navigation, route }) => {
   const { state } = useContext(Context);
 
-  const { img, name, restaurant } = route.params;
+  const { img, name, restaurant } = route?.params || {};
   const [rating, setRating] = useState();
   const [comment, setComment] = useState('');
   const [postReview] = useMutation(POST_REVIEW);
   return (
     <View style={{ flex: 1 }}>
-      <StatusBar translucent={true} style="dark" />
+      <StatusBar translucent={true} style="light" />
       <ImageBackground
         style={{
           width: '100%',
-          height: 110,
+          height: 100,
+          borderBottomLeftRadius: Dimensions.get('window').width * 0.06,
+          borderBottomRightRadius: Dimensions.get('window').width * 0.06,
+          overflow: 'hidden',
         }}
-        source={imgBg}
+        source={{
+          uri:
+            img ||
+            'https://images.pexels.com/photos/6267/menu-restaurant-vintage-table.jpg?auto=compress&cs=tinysrgb&dpr=1&w=400',
+        }}
         resizeMode="stretch"
       >
         <GlobalHeader
           arrow={true}
           headingText={`${name} review`}
           fontSize={17}
-          color={'black'}
           bold={true}
-          BackIconColor={'black'}
+          BackIconColor={'white'}
           backgroundColor={'transparent'}
           position="absolute"
           navigation={navigation}
         />
       </ImageBackground>
       <ScrollView>
-        <View style={styles.viewImg}>
-          <ImageBackground
-            source={{
-              uri:
-                img ||
-                'https://images.pexels.com/photos/6267/menu-restaurant-vintage-table.jpg?auto=compress&cs=tinysrgb&dpr=1&w=400',
-            }}
-            style={{ flex: 1, justifyContent: 'space-between' }}
-          ></ImageBackground>
-        </View>
         <View style={styles.container}>
           <Rating rating={rating} setRating={setRating} />
           <Review comment={comment} setComment={setComment} />

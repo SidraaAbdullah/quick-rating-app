@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
   },
   TextInput: {
     padding: 10,
+    width: '100%',
     justifyContent: 'flex-start',
     alignItems: 'flex-start',
   },
