@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {
   Text,
   View,
@@ -32,7 +32,7 @@ import i18n from '../../li8n';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { styles, TopCard } from '../../components/restaurant-screen';
 import { Staff, Review, HeaderImage } from '../../components/open-card-review';
-
+import * as Localization from 'expo-localization';
 const ReviewDetails = ({ navigation, route }) => {
   const openDialScreen = () => {
     let number = '';
@@ -43,6 +43,13 @@ const ReviewDetails = ({ navigation, route }) => {
     }
     Linking.openURL(number);
   };
+  const [locale, setLocale] = useState(1);
+  useEffect(() => {
+    (async () => {
+      const { locale } = await Localization.getLocalizationAsync();
+      setLocale(locale);
+    })();
+  }, []);
 
   const [data, setData] = useState([]);
   const [userWaiterModalVisible, setUserWaiterModalVisible] = useState(false);
@@ -87,12 +94,13 @@ const ReviewDetails = ({ navigation, route }) => {
       {
         google_place_id: place_id,
         user_id: state.userDetails.user_id,
+        language: locale,
       },
     ],
     GET_REVIEWS,
     {
       ...reactQueryConfig,
-      enabled: place_id,
+      enabled: locale && place_id,
       onError: e => {
         alert(e?.response?.data?.message);
       },
@@ -151,6 +159,8 @@ const ReviewDetails = ({ navigation, route }) => {
       setUserWaiterModalVisible(true);
     }
   };
+  console.log(reviewData);
+
   const restaurant = {
     place_id: place_id,
     rating: rating,
