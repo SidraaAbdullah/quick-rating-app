@@ -197,6 +197,18 @@ const Setting = ({ navigation }) => {
         />
       </View>
 
+      <View
+        style={{
+          width: '90%',
+          marginTop: 7,
+        }}
+      >
+        <CommonButton
+          title={'Edit your profile'}
+          navigation={'personalDetails'}
+        />
+      </View>
+
       <View style={{ width: '90%', marginTop: 10 }}>
         <TouchableOpacity
           activeOpacity={0.5}

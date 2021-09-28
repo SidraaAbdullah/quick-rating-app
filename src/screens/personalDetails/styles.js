@@ -1,11 +1,11 @@
-import {
-  StyleSheet,
-} from 'react-native';
+import { StyleSheet } from 'react-native';
+import { Colors } from '../../constants/Theme';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f9f9f9',
+    // position:'relatives'
   },
   avatar: {
     justifyContent: 'center',
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     fontFamily: 'ProximaNovaBold',
   },
   input_box: {
-    alignItems: 'flex-start', 
+    alignItems: 'flex-start',
     marginBottom: 16,
   },
   viewImg: {
@@ -117,13 +117,19 @@ const styles = StyleSheet.create({
     zIndex: 111,
   },
   paymentMethodLabel: {
-    paddingLeft: 10, 
+    paddingLeft: 10,
     fontSize: 15,
     fontFamily: 'ProximaNova',
   },
   paymentMethodImage: {
     backgroundColor: '#FFF6D4',
     padding: 3,
+  },
+  btnStyle: {
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 50,
   },
 });
 
