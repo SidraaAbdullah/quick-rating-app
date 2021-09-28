@@ -360,26 +360,33 @@ const ReviewDetails = ({ navigation, route }) => {
             </View>
           </TouchableOpacity>
         </View>
-
-        <Review
-          route={route}
-          loading={reviewDataLoading}
-          navigation={navigation}
-          restaurant={restaurant}
-          img={img}
-          name={name}
-          rating={rating}
-          reviewData={reviewData}
-          reviewRefetch={reviewRefetch}
-        />
-        <Staff
-          handleRefferedModalOpen={handleRefferedModalOpen}
-          route={route}
-          waitersLoading={waitersLoading}
-          waitersIsFetching={waitersIsFetching}
-          data={data}
-          navigation={navigation}
-        />
+        {!reviewDataLoading && (
+          <View
+            style={{
+              flexDirection: 'row',
+              marginBottom: 10,
+            }}
+          >
+            <Review
+              route={route}
+              navigation={navigation}
+              restaurant={restaurant}
+              img={img}
+              name={name}
+              rating={rating}
+              reviewData={reviewData}
+              reviewRefetch={reviewRefetch}
+            />
+            <Staff
+              handleRefferedModalOpen={handleRefferedModalOpen}
+              route={route}
+              waitersLoading={waitersLoading}
+              waitersIsFetching={waitersIsFetching}
+              data={data}
+              navigation={navigation}
+            />
+          </View>
+        )}
       </ScrollView>
 
       <TouchableOpacity

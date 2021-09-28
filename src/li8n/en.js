@@ -5,7 +5,7 @@ export default {
   // home
   your_restaurant: 'Your restaurants',
   hello: 'Welcome',
-  find_your_restaurant: 'Find your restaurant',
+  find_your_restaurant: 'Find your place',
   around_you: 'Around you',
   result_distance: 'Result around you',
   you_have_no_restaurant: 'You have no restaurant at the moment',
