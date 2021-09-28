@@ -30,13 +30,11 @@ export const styles = StyleSheet.create({
   },
   title: {
     fontWeight: 'bold',
-    fontSize: 20,
-    letterSpacing: 2,
+    fontSize: 16,
     marginBottom: 5,
   },
   text: {
     fontWeight: 'normal',
-    fontSize: 16,
-    letterSpacing: 0.4,
+    fontSize: 14,
   },
 });
