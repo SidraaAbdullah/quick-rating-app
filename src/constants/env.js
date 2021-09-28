@@ -18,7 +18,7 @@ const apiUrl = () => {
     // "ACCESS_FINE_LOCATION"
     api_url = 'https://quick-rate.ml/api';
   } else if (releaseEnvironment == 'staging') {
-    // expo publish --release-channel production-1.0.0
+    // expo publish --release-channel staging-1.0.0
     api_url = 'https://quick-rate.ml/api';
   }
   return api_url;

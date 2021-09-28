@@ -101,6 +101,8 @@ export default function SplashScreen(props) {
         email: userInfo?.email,
         accessToken: userInfo?.accessToken,
         user_id: userInfo?.user_id,
+        last_name: userInfo?.last_name || '',
+        phone_number: userInfo.phone_number || '',
       };
       dispatch({
         type: actionTypes.USER_DETAILS,

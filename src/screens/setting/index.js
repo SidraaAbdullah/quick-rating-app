@@ -40,7 +40,7 @@ const Setting = ({ navigation }) => {
   const [updatePicture] = useMutation(UPDATE_PICTURE);
 
   const resetState = async () => {
-    navigation.navigate('Home', { crossIcon: false });
+    navigation.navigate('socialLogin');
     dispatch({
       type: actionTypes.USER_DETAILS,
       payload: {},
@@ -194,6 +194,18 @@ const Setting = ({ navigation }) => {
           title={i18n.t('i_waiter')}
           navigation={'WaiterProfile'}
           navigationData={{ crossIcon: true }}
+        />
+      </View>
+
+      <View
+        style={{
+          width: '90%',
+          marginTop: 7,
+        }}
+      >
+        <CommonButton
+          title={'Edit your profile'}
+          navigation={'personalDetails'}
         />
       </View>
 

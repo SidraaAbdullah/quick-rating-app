@@ -20,17 +20,11 @@ const RenderCategory = props => {
 
   return (
     <TouchableOpacity
+      activeOpacity={0.8}
       style={{
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        // backgroundColor: 'blue',
-        // marginBottom: 12,
-        // backgroundColor: 'blue',
-        // height: '200%',
-        // width: '100%',
-        // flexDirection: 'row',
-        // flexWrap: 'wrap',
       }}
       onPress={() => navigation.navigate('Home', { category })}
     >

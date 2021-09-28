@@ -11,7 +11,7 @@ export default {
   you_have_no_restaurant: 'You have no restaurant at the moment',
   search_for_rest_and_add:
     'Search for your restaurant and add yourself by choosing: You are a staff',
-  no_restaurant_found: 'Sorry, no restaurant was found',
+  no_restaurant_found: 'Sorry, no search result was found',
   no_waiter_found: 'Sorry, no staff registered to date',
 
   // Open card reviews
