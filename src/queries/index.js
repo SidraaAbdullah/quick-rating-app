@@ -9,3 +9,4 @@ export * from './notification';
 export * from './search-res';
 export * from './manager-signIn';
 export * from './managers';
+export * from './review';

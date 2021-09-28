@@ -23,6 +23,7 @@ import {
   I_AM_WAITER,
   ADDING_WAITERS,
   GET_RESTAURANT_DETAILS,
+  GET_REVIEWS,
 } from '../../queries';
 import Context from '../../contextApi/context';
 const imgSitting = require('../../assets/images/sittingtable.png');
@@ -75,6 +76,28 @@ const ReviewDetails = ({ navigation, route }) => {
     restaurant_id,
     geometry,
   } = route?.params;
+
+  const {
+    data: reviewData,
+    isLoading: reviewDataLoading,
+    refetch: reviewRefetch,
+  } = useQuery(
+    [
+      'GET_REVIEWS',
+      {
+        google_place_id: place_id,
+        user_id: state.userDetails.user_id,
+      },
+    ],
+    GET_REVIEWS,
+    {
+      ...reactQueryConfig,
+      enabled: place_id,
+      onError: e => {
+        alert(e?.response?.data?.message);
+      },
+    },
+  );
 
   const {
     data: waitersData,
@@ -345,6 +368,8 @@ const ReviewDetails = ({ navigation, route }) => {
           img={img}
           name={name}
           rating={rating}
+          reviewData={reviewData}
+          reviewRefetch={reviewRefetch}
         />
         <Staff
           handleRefferedModalOpen={handleRefferedModalOpen}

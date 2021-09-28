@@ -4,9 +4,15 @@ import { AntDesign } from '@expo/vector-icons';
 import { View, Text, FlatList, TouchableOpacity } from 'react-native';
 import { styles } from './index';
 import { Colors } from '../../constants/Theme';
-import { reviewSlider } from '../../constants/slider';
 import { ReviewSlider } from './index';
-const Review = ({ navigation, img, name, rating, restaurant }) => {
+
+const Review = ({
+  navigation,
+  img,
+  name,
+  restaurant,
+  reviewData,
+}) => {
   return (
     <View>
       <View
@@ -35,9 +41,15 @@ const Review = ({ navigation, img, name, rating, restaurant }) => {
       </View>
       <View style={{ marginHorizontal: 15, marginVertical: 10 }}>
         <FlatList
-          data={reviewSlider}
+          data={reviewData?.data || []}
           renderItem={({ item }) => (
-            <ReviewSlider rating={rating} item={item} />
+            <View style={{ marginRight: 7, marginBottom: 10, marginTop: 5 }}>
+              <Text>
+                {item?.comment && (
+                  <ReviewSlider rating={+item.rating} item={item} />
+                )}
+              </Text>
+            </View>
           )}
           horizontal
           showsHorizontalScrollIndicator={false}
