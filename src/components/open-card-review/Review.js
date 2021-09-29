@@ -7,7 +7,15 @@ import { Colors } from '../../constants/Theme';
 import { ReviewSlider } from './index';
 import Spinner from 'react-native-loading-spinner-overlay';
 
-const Review = ({ navigation, img, name, loading, restaurant, reviewData }) => {
+const Review = ({
+  navigation,
+  img,
+  name,
+  loading,
+  restaurant,
+  reviewData,
+  reviewRefetch,
+}) => {
   return (
     <View>
       <View
@@ -27,6 +35,7 @@ const Review = ({ navigation, img, name, loading, restaurant, reviewData }) => {
               img,
               name,
               restaurant,
+              reviewRefetch,
             })
           }
           style={styles.btnAdd}

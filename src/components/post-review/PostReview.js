@@ -21,7 +21,7 @@ import { POST_REVIEW } from './queries';
 const PostReview = ({ navigation, route }) => {
   const { state } = useContext(Context);
 
-  const { img, name, restaurant } = route?.params || {};
+  const { img, name, restaurant, reviewRefetch } = route?.params || {};
   const [rating, setRating] = useState();
   const [comment, setComment] = useState('');
   const [postReview] = useMutation(POST_REVIEW);
@@ -74,6 +74,7 @@ const PostReview = ({ navigation, route }) => {
             {
               onSuccess: () => {
                 navigation.goBack(null);
+                reviewRefetch();
               },
               onError: err => {
                 alert(err);

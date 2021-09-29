@@ -1,5 +1,5 @@
 import Constants from 'expo-constants';
-import localhost from '../localhost';
+import localhost from '../../localhost';
 // import * as Network from 'expo-network';
 function getEnvVars(env = '') {
   if (env === null || env === undefined || env === '') return 'development';

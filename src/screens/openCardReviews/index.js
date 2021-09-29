@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {
   Text,
   View,
@@ -32,6 +32,7 @@ import i18n from '../../li8n';
 import Spinner from 'react-native-loading-spinner-overlay';
 import { styles, TopCard } from '../../components/restaurant-screen';
 import { Staff, Review, HeaderImage } from '../../components/open-card-review';
+import * as Localization from 'expo-localization';
 
 const ReviewDetails = ({ navigation, route }) => {
   const openDialScreen = () => {
@@ -60,6 +61,7 @@ const ReviewDetails = ({ navigation, route }) => {
   const [Userloading, setUserLoading] = useState(false);
   const scrollY = new Animated.Value(0);
   const diffClamp = Animated.diffClamp(scrollY, 0, 55);
+  const [locale, setLocale] = useState(1);
   const translateY = diffClamp.interpolate({
     inputRange: [0, 50],
     outputRange: [0, -50],
@@ -81,12 +83,14 @@ const ReviewDetails = ({ navigation, route }) => {
     data: reviewData,
     isLoading: reviewDataLoading,
     refetch: reviewRefetch,
+    isFetching: reviewFetching,
   } = useQuery(
     [
       'GET_REVIEWS',
       {
         google_place_id: place_id,
         user_id: state.userDetails.user_id,
+        language: locale,
       },
     ],
     GET_REVIEWS,
@@ -98,7 +102,23 @@ const ReviewDetails = ({ navigation, route }) => {
       },
     },
   );
+  useEffect(() => {
+    (async () => {
+      // const { ExplanatoryScreen } = await getAsyncStorageValues();
+      // if (!ExplanatoryScreen?.explanatory_screen) {
+      const { locale } = await Localization.getLocalizationAsync();
+      setLocale(locale);
+      reviewRefetch();
 
+      //   await AsyncStorage.setItem(
+      //     '@ExplanatoryScreen',
+      //     JSON.stringify({
+      //       explanatory_screen: true,
+      //     }),
+      //   );
+      // }
+    })();
+  }, []);
   const {
     data: waitersData,
     isLoading: waitersLoading,
@@ -251,7 +271,8 @@ const ReviewDetails = ({ navigation, route }) => {
           waitersIsFetching &&
           !Refferedloading &&
           !Userloading &&
-          !waitersLoading
+          !waitersLoading &&
+          reviewFetching
         }
       />
       <HeaderImage
