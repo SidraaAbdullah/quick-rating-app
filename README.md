@@ -1,36 +1,37 @@
-# Native Mobile App
-# Project Title
- The app allows anyone to rate waiters after visiting a restaurant
+# Quick Rating App
+This Quick Rating App revolutionizes how users can find and rate service-oriented businesses in their area. From barber shops to restaurants and cafes, this app provides a seamless platform for users to discover, book appointments, and share their experiences with others.
 
-# Getting Started
-These instructions will get you a copy of the project up and running on your local machine for development purposes. See deployment for notes on how to deploy the project on a live system.
+### 1. User Registration and Profile Creation:
+- Easily create an account or sign in using existing social media profiles.
+- Personalize your profile with preferences and location information to tailor your experience.
 
-# Prerequisites
-What things you need to install the software and how to install them
+### 2. Category Selection:
+- Choose from a variety of categories including barber shops, restaurants, cafes, and more.
+- Select one or multiple categories based on your interests or needs.
 
-All npm packages used in this project
+### 3. Shop Discovery:
+- Explore a curated list of shops within your specified area and selected categories.
+- Use filters to refine search results based on distance, ratings, availability, and services offered.
+- Access detailed shop profiles including addresses, contact information, working hours, and available services.
 
-# Installing
-A step by step series of examples that tell you how to get a development env running
+### 4. Availability Checking:
+- Check real-time availability for services or appointments at your preferred shops.
+- Book appointments or make reservations directly within the app, if supported by the businesses.
 
-> git clone 
-> open the directory of the project
-> npm install
+### 5. Rating and Review System:
+- Rate shops and their workers based on your experience using a five-star rating system or thumbs-up/down mechanism.
+- Leave detailed reviews and comments to share insights and recommendations with others.
 
-### Development
+### 6. Worker Rating:
+- Provide feedback on individual workers or service providers within the shops.
+- Rate aspects such as professionalism, skill level, and friendliness to help others make informed decisions.
 
-```
-> npm run start
+### 7. User Interaction:
+- Interact with other users by liking or commenting on reviews, sharing experiences, and asking questions.
+- Follow your favorite shops or workers to stay updated on new services, promotions, and availability changes.
 
-```
-* Your Server will run at  `localhost:9000`
+### 8. Notification System:
+- Receive push notifications for appointment reminders, shop updates, and responses to your reviews.
+- Customize notification preferences to suit your interests and activity within the app.
 
-# Built With
-* React Native (Expo)
-
-### Authors
-* Sarmed Rizvi - Project Manager
-* Salman Siddiqui - Project Manager
-* Yasir - Developer
-* Zain - Developer
 
